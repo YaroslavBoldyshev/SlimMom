@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from "./auth/auth-slice";
+import { dailyRateReducer } from './dailyRate/dailyRate-slice';
 
 import {
   persistStore,
@@ -12,14 +13,6 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
-// const middleware = [
-//     ...({
-//         serializableCheck: {
-//             ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//         },
-//     }),
-// ];
 
  const middleware = (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -37,6 +30,7 @@ const authPersistConfig = {
 export const store = configureStore({
     reducer: {
         auth: persistReducer(authPersistConfig, authReducer),
+        dailyRate: dailyRateReducer,
     },
     middleware,
     devTools: process.env.NODE_ENV === 'development',

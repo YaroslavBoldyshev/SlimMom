@@ -2,7 +2,7 @@ export const getIsLoggedIn = state => state.auth.isLoggedIn;
 
 export const getUsername = state => state.auth.user.username;
 
-export const getUserData = state => state.auth.user.Data;
+export const getUserData = state => state.auth.user.userData;
 
 export const getTodaySummary = state => state.auth.todaySummary;
 
