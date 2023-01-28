@@ -10,6 +10,9 @@ import { Home } from 'pages/Home/Home';
 import Login from 'pages/Login/Login';
 import Registration from 'pages/Registration/Registration';
 import Main from 'pages/Main/Main';
+import Dairy from 'pages/Dairy/Dairy';
+import Calculator from 'pages/Calculator/Calculator';
+
 // const Home = lazy(() => import('pages/Home/Home'));
 // const Login = lazy(() => import('pages/Login/Login'));
 // const Registration = lazy(() => import('pages/Registration/Registration'));
@@ -27,6 +30,8 @@ export const App = () => {
           {/* <Route path="/" element={<PublicRoute />}> */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registration />} />
+          <Route path="/diary" element={<Dairy />} />
+          <Route path="/calculator" element={<Calculator />} />
           {/* </Route> */}
           <Route path="*" element={<NotFound />} />
         </Route>
