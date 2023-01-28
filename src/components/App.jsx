@@ -14,6 +14,7 @@ const Main = lazy(() => import('pages/Main/Main'));
 export const App = () => {
   return (
     <>
+<<<<<<< Routes-v.1
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
@@ -27,6 +28,9 @@ export const App = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+=======
+      <SharedLayout></SharedLayout>
+>>>>>>> dev
     </>
   );
 };
