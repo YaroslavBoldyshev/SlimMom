@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from "./auth/auth-slice";
 import { dailyRateReducer } from './dailyRate/dailyRate-slice';
+import { productSearchReducer } from './productSearch/productSearch-slice';
 
 import {
   persistStore,
@@ -31,6 +32,7 @@ export const store = configureStore({
     reducer: {
         auth: persistReducer(authPersistConfig, authReducer),
         dailyRate: dailyRateReducer,
+        productSearch: productSearchReducer, 
     },
     middleware,
     devTools: process.env.NODE_ENV === 'development',

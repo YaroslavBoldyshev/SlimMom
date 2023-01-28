@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import cookie from 'js-cookie'
 
 axios.defaults.baseURL = "https://slimmom-backend.goit.global"
 
@@ -49,6 +50,7 @@ export const register = createAsyncThunk(
                 accessToken.set(data.token);
                 refreshToken.set(data.token);
                 sid.set(data.sid);
+                cookie.set("sid", data.sid)
                 return data;
             }
         catch (error) {
