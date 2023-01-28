@@ -6,7 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import NotFound from '../pages/NotFound/NotFound';
-import { Home } from 'pages/Home/Home';
+import Home  from 'pages/Home/Home';
 import Login from 'pages/Login/Login';
 import Registration from 'pages/Registration/Registration';
 import Main from 'pages/Main/Main';
