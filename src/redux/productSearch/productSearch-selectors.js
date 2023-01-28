@@ -1,7 +1,7 @@
 export const getProductSearch = state => state;
 
 const productSearchSelectors = {
-    getProductSearch,
+  getProductSearch,
 };
 
 export default productSearchSelectors;
