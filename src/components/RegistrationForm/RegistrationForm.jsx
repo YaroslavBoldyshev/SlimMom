@@ -1,5 +1,4 @@
 import css from './RegistrationForm.module.css';
-// import React from 'react';
 
 const RegistrationForm = () => {
   return (
