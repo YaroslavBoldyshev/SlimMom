@@ -54,4 +54,4 @@ const authSlice = createSlice({
   },
 });
 
-export const dailyRateReducer = authSlice.extraReducers;
+export const dailyRateReducer = authSlice.reducer;
