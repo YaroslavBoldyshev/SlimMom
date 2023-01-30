@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export const MenuContainer = styled.div`
   position: absolute;
@@ -26,10 +27,11 @@ export const MenuContainer = styled.div`
   }
 `;
 
-export const MenuLink = styled.div`
+export const MenuLink = styled(NavLink)`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
   font-weight: 700;
   font-size: 24px;
   line-height: 1.2;

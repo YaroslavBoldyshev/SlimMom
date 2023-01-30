@@ -5,8 +5,12 @@ export const Menu = ({ setIsMenuOpen }) => {
   return (
     <>
       <MenuContainer>
-        <MenuLink onClick={handleClick}>Щоденник</MenuLink>
-        <MenuLink onClick={handleClick}>Калькулятор</MenuLink>
+        <MenuLink to="/diary" onClick={handleClick}>
+          Diary
+        </MenuLink>
+        <MenuLink to="/calculator" onClick={handleClick}>
+          Calculator
+        </MenuLink>
       </MenuContainer>
     </>
   );

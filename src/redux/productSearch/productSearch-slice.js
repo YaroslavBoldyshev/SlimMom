@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { named } from 'redux/dailyRate/dailyRate-operations';
 import { search } from './productSearch-operations';
 
 const authSlice = createSlice({
@@ -23,4 +24,4 @@ const authSlice = createSlice({
   },
 });
 
-export const productSearchReducer = authSlice.extraReducers;
+export const productSearchReducer = authSlice.reducer;

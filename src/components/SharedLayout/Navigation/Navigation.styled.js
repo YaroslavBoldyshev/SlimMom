@@ -25,14 +25,17 @@ export const NavigationAuth = styled.div`
   width: 100%;
 `;
 
-export const NavigationLink = styled.div`
+export const NavigationLink = styled(NavLink)`
+  display: flex;
   font-weight: 700;
   font-size: 14px;
+  text-decoration: none;
   line-height: 1.2;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #9b9faa;
   cursor: pointer;
+  padding-bottom: 8px;
   transition: color 300ms ease-in;
   &.active {
     color: rgba(33, 33, 33, 1);
@@ -52,7 +55,7 @@ export const AuthNavContainer = styled.div`
   }
 `;
 
-export const AuthLink = styled.div`
+export const AuthLink = styled(NavLink)`
   display: none;
   @media screen and (min-width: 1280px) {
     display: flex;
@@ -60,6 +63,7 @@ export const AuthLink = styled.div`
     font-size: 14px;
     line-height: 1.2;
     letter-spacing: 0.04em;
+    text-decoration: none;
     text-transform: uppercase;
     color: #9b9faa;
     padding-bottom: 8px;
