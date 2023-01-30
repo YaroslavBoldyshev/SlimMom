@@ -1,21 +1,23 @@
-import styled from '@emotion/styled';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-// потрібно виправити розміри і падінги -----------------
+export default function Container({ children }) {
+  return <Section>{children}</Section>;
+}
 
-export const Container = styled.div`
+const Section = styled.section`
   width: 100%;
-  @media screen and (min-width: 480px) {
-    width: 320px;
-    margin: 0 auto;
+  @media screen and (max-width: 767px) {
+    margin: 20px 20px 16px 20px;
   }
   @media screen and (min-width: 768px) {
-    width: 768px;
-    padding-left: 32px;
-    padding-right: 32px;
+    margin: 20px 32px 16px 32px;
   }
   @media screen and (min-width: 1280px) {
-    width: 1280px;
-    padding-left: 16px;
-    padding-right: 16px;
+    margin: 80px 1097px 147px 16px;
   }
 `;
+
+Container.propTypes = {
+  children: PropTypes.node,
+};
