@@ -10,14 +10,14 @@ const authSlice = createSlice({
     error: null,
   },
   extraReducers: {
-    [named.pending](state) {
+    [search.pending](state) {
       state.isLoading = true;
     },
-    [named.fulfilled](state, action) {
+    [search.fulfilled](state, action) {
       state.product = action.payload;
       state.isLoading = false;
     },
-    [named.rejected](state, action) {
+    [search.rejected](state, action) {
       state.error = action.payload;
       state.isLoading = false;
     },
