@@ -6,7 +6,7 @@ import PublicRoute from './PublicRoute/PublicRoute';
 
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import NotFound from '../pages/NotFound/NotFound';
-import Container from './Container/Container';
+// import Container from './Container/Container';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Login = lazy(() => import('pages/Login/Login'));
@@ -16,7 +16,7 @@ const Dairy = lazy(() => import('pages/Dairy/Dairy'));
 const Calculator = lazy(() => import('pages/Calculator/Calculator'));
 
 export const App = () => (
-  <><Container>
+  <>
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
@@ -32,6 +32,5 @@ export const App = () => (
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
-    </Container>
   </>
 );
