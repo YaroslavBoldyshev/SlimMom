@@ -1,11 +1,11 @@
 import mySvg from '../../icons/close.svg';
-import { Link } from 'react-router-dom';
-import { Link } from './Modal.styled';
+import  RegisterLink  from './Modal.styled';
 
 const Modal = () => {
+  const products =[];
   return (
     <>
-      <div className={css.modal}>
+      <div >
         <button type="button">
           <img src={mySvg} alt="close"></img>
         </button>
@@ -18,7 +18,7 @@ const Modal = () => {
             <li key={prod.id} />
           ))}
         </ol>
-        <Link to="/register">Start losing weight </Link>
+        <RegisterLink to="/register">Start losing weight </RegisterLink>
       </div>
     </>
   );
