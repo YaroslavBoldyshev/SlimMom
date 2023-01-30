@@ -18,7 +18,6 @@ const LoginForm = () => {
         return;
     }
   };
-  console.log(email);
 
   const handleSubmit = event => {
     event.preventDefault();

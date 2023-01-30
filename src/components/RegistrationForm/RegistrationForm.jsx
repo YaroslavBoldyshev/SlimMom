@@ -5,13 +5,13 @@ import { register } from '../../redux/auth/auth-operations';
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
+  const [username, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
-      case 'name':
+      case 'username':
         return setName(value);
       case 'email':
         return setEmail(value);
@@ -24,7 +24,7 @@ const RegistrationForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    dispatch(register({ name, email, password }));
+    dispatch(register({ username, email, password }));
     setName('');
     setEmail('');
     setPassword('');
@@ -36,7 +36,7 @@ const RegistrationForm = () => {
         <h4 className={css.title}>Register</h4>
         <label className={css.regName}>
           Name*
-          <input type="text" onChange={handleChange} value={name} name="name"/>
+          <input type="text" onChange={handleChange} value={username} name="username"/>
         </label>
         <label className={css.regEmail}>
           Email*
