@@ -31,8 +31,8 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    dailyRate: dailyRateReducer,
-    productSearch: productSearchReducer,
+    dailyRate: {dailyRateReducer},
+    productSearch: {productSearchReducer},
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

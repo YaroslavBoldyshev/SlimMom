@@ -1,7 +1,7 @@
 export const getDailyRate = state => state;
 
 const dailyRateSelectors = {
-  getIsLoggedIn,
+  getDailyRate,
 };
 
 export default dailyRateSelectors;

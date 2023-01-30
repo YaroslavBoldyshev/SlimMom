@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://slimmom-backend.goit.global';
 
-export const unnamed = createAsyncThunk('/product', async (name, thunkAPI) => {
+export const search = createAsyncThunk('/product', async (name, thunkAPI) => {
   try {
     const { data } = await axios.post(`/product?search=${name}`);
     return data;
