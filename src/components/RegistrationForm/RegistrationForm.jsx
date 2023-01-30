@@ -3,7 +3,12 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 // import css from './RegistrationForm.module.css';
-import { register, logIn, logOut, refresh } from '../../redux/auth/auth-operations';
+import {
+  register,
+  logIn,
+  logOut,
+  refresh,
+} from '../../redux/auth/auth-operations';
 import {
   Input,
   Label,
