@@ -197,7 +197,7 @@ const Form = styled.div`
 `;
 
 const RadioButtonWrapper = styled.div`
-/* display: flex;
+  /* display: flex;
 align-items: center;
   justify-content: center; */
   padding: 0;
@@ -216,15 +216,14 @@ const RadioButtonDiv = styled.div`
 
   label {
     cursor: pointer;
-     display: flex;
-     align-items: center;
+    display: flex;
+    align-items: center;
     justify-content: center;
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0.04em;
     color: #9b9faa;
-    
   }
 
   label::before {
@@ -234,9 +233,9 @@ const RadioButtonDiv = styled.div`
     height: 20px;
     border-radius: 50%;
     margin-right: 8px;
-    display: flex; 
+    display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
   }
 
   input {
@@ -250,8 +249,8 @@ const RadioButtonDiv = styled.div`
   }
   input:checked {
     & + label::before {
-     /* display: flex; */
-       /* justify-content: center;
+      /* display: flex; */
+      /* justify-content: center;
       align-items: center;  */
       content: '⬤';
       width: 20px;

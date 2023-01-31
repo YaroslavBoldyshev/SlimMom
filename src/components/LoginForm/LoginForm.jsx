@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
@@ -7,7 +6,6 @@ import {
   logOut,
   refresh,
 } from '../../redux/auth/auth-operations';
-import Container from 'components/Container/Container';
 import {
   Input,
   Label,
@@ -51,7 +49,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Container>
+    <>
       <LogForm onSubmit={handleSubmit}>
         <Title>Log In</Title>
         <Label>
@@ -75,7 +73,7 @@ const LoginForm = () => {
         <LogButton type="submit">Log In</LogButton>
         <RegButton type="button">Register</RegButton>
       </LogForm>
-    </Container>
+    </>
   );
 };
 

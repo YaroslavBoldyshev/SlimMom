@@ -1,5 +1,3 @@
-
-import Container from 'components/Container/Container';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -39,7 +37,6 @@ const RegistrationForm = () => {
     }
   };
 
-
   const authOperations = { register, logIn, logOut, refresh };
 
   const handleSubmit = e => {
@@ -58,7 +55,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <Container>
+    <>
       <RegisterForm onSubmit={handleSubmit}>
         <Title>Register</Title>
         <Label>
@@ -93,7 +90,7 @@ const RegistrationForm = () => {
           <LogButton type="button">Log In</LogButton>
         </NavLink>
       </RegisterForm>
-    </Container>
+    </>
   );
 };
 
