@@ -18,7 +18,7 @@ const authSlice = createSlice({
         __v: null,
       },
     ],
-    notAllowedProducts: [[]],
+    notAllowedProducts: [],
     isLoading: false,
     error: null,
   },
