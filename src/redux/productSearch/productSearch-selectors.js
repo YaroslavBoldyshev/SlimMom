@@ -1,4 +1,4 @@
-export const getProductSearch = state => state;
+export const getProductSearch = state => state.products;
 
 const productSearchSelectors = {
   getProductSearch,

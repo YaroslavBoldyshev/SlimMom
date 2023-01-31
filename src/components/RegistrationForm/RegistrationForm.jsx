@@ -1,3 +1,4 @@
+
 import Container from 'components/Container/Container';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -37,6 +38,7 @@ const RegistrationForm = () => {
         return;
     }
   };
+
 
   const authOperations = { register, logIn, logOut, refresh };
 

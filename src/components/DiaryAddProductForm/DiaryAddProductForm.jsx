@@ -1,53 +1,43 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductSearch } from '../../redux/productSearch/productSearch-selectors';
+import { search } from '../../redux/productSearch/productSearch-operations'
+
 export const DiaryAddProductForm = () => {
-  const products = [
-    {
-      _id: '507f1f77bcf86cd799439011',
-      categories: ['яйца'],
-      weight: 100,
-      title: {
-        ru: 'Меланж яичный',
-        ua: 'Меланж яєчний',
-      },
-      calories: 157,
-      groupBloodNotAllowed: [null, true, false, false, false],
-      __v: 0,
-    },
-    {
-      _id: '507f1f77bcf86cd799439011',
-      categories: ['яйца'],
-      weight: 100,
-      title: {
-        ru: 'Меланж яичный',
-        ua: 'Пюре',
-      },
-      calories: 157,
-      groupBloodNotAllowed: [null, true, false, false, false],
-      __v: 0,
-    },
-    {
-      _id: '507f1f77bcf86cd799439011',
-      categories: ['яйца'],
-      weight: 100,
-      title: {
-        ru: 'Меланж яичный',
-        ua: 'Котлета по києвський',
-      },
-      calories: 157,
-      groupBloodNotAllowed: [null, true, false, false, false],
-      __v: 0,
-    },
-  ];
+
+  const [searchedProducts, setSearchedProducts] = useState('');
+  const dispatch = useDispatch();
+  const myProducts = useSelector(getProductSearch);
+  
+  
+  
+  const handleChange = event => {
+    setSearchedProducts(event.target.value);
+  };
+  
+  console.log(searchedProducts);
+
+  useEffect(() => {
+    if (searchedProducts.length !== 0) {
+      
+      dispatch(search(searchedProducts));
+    }
+  }, [dispatch, searchedProducts]);
 
   return (
     <div>
-      <input list="brow" />
-      <datalist id="brow">
-        {products.map(product => {
-          return <option value={product.title.ua}></option>;
-        })}
-      </datalist>
+      <input list="brow" value={searchedProducts} onChange={handleChange} />
+      {/* <datalist id="brow">
+       {products.map(product => {
+          return <option value={product.title.ua} key={product._id}></option>;
+        })} 
+      </datalist> */}
       <input type="text" />
-      <button type="button" onClick={() => dispatch(deleteItem(id))}>
+      <button
+        type="button"
+        // onClick={() => dispatch(deleteItem(id))}
+      >
         <img src="./" alt="add" />
       </button>
     </div>
