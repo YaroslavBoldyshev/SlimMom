@@ -27,7 +27,7 @@ const RegistrationForm = () => {
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
-      case 'name':
+      case 'username':
         return setUsername(value);
       case 'password':
         return setPassword(value);
@@ -43,6 +43,7 @@ const RegistrationForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const formData = { username, email: email.toLowerCase(), password };
+    console.log(formData);
     dispatch(authOperations.register(formData))
       .then(() => {
         dispatch(logIn({ email: email.toLowerCase(), password }));
@@ -62,7 +63,7 @@ const RegistrationForm = () => {
           Name*
           <Input
             type="text"
-            name="name"
+            name="username"
             onChange={handleChange}
             value={username}
           />
