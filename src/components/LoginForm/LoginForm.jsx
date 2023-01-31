@@ -11,7 +11,7 @@ const LoginForm = () => {
         </label>
         <label className={css.logPassword}>
           Password*
-          <input type="text" />
+          <input type="password" />
         </label>
         <button type="submit" className={css.logButton}>
           Log In

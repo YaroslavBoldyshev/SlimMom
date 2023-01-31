@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
-export const LogoContainer = styled.div`
+export const LogoContainer = styled(NavLink)`
   display: flex;
   align-items: center;
   @media screen and (min-width: 768px) {
