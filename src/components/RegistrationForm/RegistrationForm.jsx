@@ -1,8 +1,9 @@
-
 import Container from 'components/Container/Container';
+import Loader from 'components/Loader/Loader';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { isLoaded } from 'redux/auth/auth-selectors';
 import {
   register,
   logIn,
@@ -23,7 +24,7 @@ const RegistrationForm = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const isLoading = useSelector(isLoaded);
   const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
@@ -39,13 +40,11 @@ const RegistrationForm = () => {
     }
   };
 
-
   const authOperations = { register, logIn, logOut, refresh };
 
   const handleSubmit = e => {
     e.preventDefault();
     const formData = { username, email: email.toLowerCase(), password };
-    console.log(formData);
     dispatch(authOperations.register(formData))
       .then(() => {
         dispatch(logIn({ email: email.toLowerCase(), password }));
@@ -59,6 +58,7 @@ const RegistrationForm = () => {
 
   return (
     <Container>
+      {isLoading ? <Loader /> : null}
       <RegisterForm onSubmit={handleSubmit}>
         <Title>Register</Title>
         <Label>
