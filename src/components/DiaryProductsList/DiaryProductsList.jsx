@@ -27,8 +27,6 @@ export const DiaryProductsList = () => {
       id: '3',
     },
   ];
-  
-  console.log(meal);
 
   return (
     <ul>
