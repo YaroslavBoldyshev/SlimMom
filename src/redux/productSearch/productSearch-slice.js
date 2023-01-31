@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { named } from 'redux/dailyRate/dailyRate-operations';
 import { search } from './productSearch-operations';
 
 const productSearchSlice = createSlice({
