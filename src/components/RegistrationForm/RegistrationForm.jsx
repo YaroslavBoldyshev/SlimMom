@@ -4,12 +4,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { isLoaded } from 'redux/auth/auth-selectors';
-import {
-  register,
-  logIn,
-  logOut,
-  refresh,
-} from '../../redux/auth/auth-operations';
+import { register, logIn } from '../../redux/auth/auth-operations';
 import {
   Input,
   Label,
@@ -31,16 +26,16 @@ const RegistrationForm = () => {
     switch (name) {
       case 'username':
         return setUsername(value);
-      case 'password':
-        return setPassword(value);
       case 'email':
         return setEmail(value);
+      case 'password':
+        return setPassword(value);
       default:
         return;
     }
   };
 
-  const authOperations = { register, logIn, logOut, refresh };
+  const authOperations = { register, logIn };
 
   const handleSubmit = e => {
     e.preventDefault();
