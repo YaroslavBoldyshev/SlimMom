@@ -2,7 +2,6 @@ import Container from 'components/Container/Container';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-// import css from './RegistrationForm.module.css';
 import {
   register,
   logIn,
@@ -45,7 +44,6 @@ const RegistrationForm = () => {
     e.preventDefault();
     const formData = { username, email: email.toLowerCase(), password };
     dispatch(authOperations.register(formData))
-      .unwrap()
       .then(() => {
         dispatch(logIn({ email: email.toLowerCase(), password }));
       })
@@ -58,7 +56,6 @@ const RegistrationForm = () => {
 
   return (
     <Container>
-      {/* <section> */}
       <RegisterForm onSubmit={handleSubmit}>
         <Title>Register</Title>
         <Label>
@@ -73,7 +70,7 @@ const RegistrationForm = () => {
         <Label>
           Email*
           <Input
-            type="text"
+            type="email"
             name="email"
             onChange={handleChange}
             value={email}
@@ -82,7 +79,7 @@ const RegistrationForm = () => {
         <LabelPass>
           Password*
           <Input
-            type="text"
+            type="password"
             name="password"
             onChange={handleChange}
             value={password}
@@ -93,7 +90,6 @@ const RegistrationForm = () => {
           <LogButton type="button">Log In</LogButton>
         </NavLink>
       </RegisterForm>
-      {/* </section> */}
     </Container>
   );
 };
