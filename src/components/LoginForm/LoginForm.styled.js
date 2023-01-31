@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const RegisterForm = styled.form`
+export const LogForm = styled.form`
   width: 400px;
 `;
 
@@ -42,7 +42,7 @@ export const Input = styled.input`
   outline: none;
 `;
 
-export const RegButton = styled.button`
+export const LogButton = styled.button`
   color: white;
   width: 182px;
   padding: 13px 15px;
@@ -56,7 +56,7 @@ export const RegButton = styled.button`
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
 `;
 
-export const LogButton = styled.button`
+export const RegButton = styled.button`
   width: 182px;
   padding: 13px 15px;
   font-size: 14px;
