@@ -1,57 +1,98 @@
-import css from './RegistrationForm.module.css';
+
+import Container from 'components/Container/Container';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { register } from '../../redux/auth/auth-operations';
+import { NavLink } from 'react-router-dom';
+import {
+  register,
+  logIn,
+  logOut,
+  refresh,
+} from '../../redux/auth/auth-operations';
+import {
+  Input,
+  Label,
+  LabelPass,
+  LogButton,
+  RegButton,
+  RegisterForm,
+  Title,
+} from './RegistrationForm.styled';
 
 const RegistrationForm = () => {
-  const dispatch = useDispatch();
-  const [username, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useDispatch();
+
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
-      case 'username':
-        return setName(value);
-      case 'email':
-        return setEmail(value);
+      case 'name':
+        return setUsername(value);
       case 'password':
         return setPassword(value);
+      case 'email':
+        return setEmail(value);
       default:
         return;
     }
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    dispatch(register({ username, email, password }));
-    setName('');
+
+  const authOperations = { register, logIn, logOut, refresh };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const formData = { username, email: email.toLowerCase(), password };
+    dispatch(authOperations.register(formData))
+      .then(() => {
+        dispatch(logIn({ email: email.toLowerCase(), password }));
+      })
+      .catch(error => error(error.message));
+
+    setUsername('');
     setEmail('');
     setPassword('');
   };
-  
+
   return (
-    <section>
-      <form className={css.loginForm} onSubmit={handleSubmit}>
-        <h4 className={css.title}>Register</h4>
-        <label className={css.regName}>
+    <Container>
+      <RegisterForm onSubmit={handleSubmit}>
+        <Title>Register</Title>
+        <Label>
           Name*
-          <input type="text" onChange={handleChange} value={username} name="username"/>
-        </label>
-        <label className={css.regEmail}>
+          <Input
+            type="text"
+            name="name"
+            onChange={handleChange}
+            value={username}
+          />
+        </Label>
+        <Label>
           Email*
-          <input type="text" onChange={handleChange} value={email} name="email"/>
-        </label>
-        <label className={css.regPassword}>
+          <Input
+            type="email"
+            name="email"
+            onChange={handleChange}
+            value={email}
+          />
+        </Label>
+        <LabelPass>
           Password*
-          <input type="text" onChange={handleChange} value={password} name="password"/>
-        </label>
-        <button type="submit" className={css.regButton}>
-          Register
-        </button>
-        <button type="button">Log In</button>
-      </form>
-    </section>
+          <Input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            value={password}
+          />
+        </LabelPass>
+        <RegButton type="submit">Register</RegButton>
+        <NavLink to="/login">
+          <LogButton type="button">Log In</LogButton>
+        </NavLink>
+      </RegisterForm>
+    </Container>
   );
 };
 
