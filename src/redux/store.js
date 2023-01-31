@@ -25,14 +25,14 @@ const middleware = getDefaultMiddleware =>
 const authPersistConfig = {
   key: 'auth',
   storage,
-  witelist: ['token'],
+  whitelist: ['token'],
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    dailyRate: {dailyRateReducer},
-    productSearch: {productSearchReducer},
+    dailyRate: dailyRateReducer,
+    productSearch: productSearchReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

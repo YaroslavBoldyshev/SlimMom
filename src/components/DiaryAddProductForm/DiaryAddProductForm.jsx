@@ -6,7 +6,7 @@ import { search } from '../../redux/productSearch/productSearch-operations'
 
 export const DiaryAddProductForm = () => {
 
-  const [searchedProducts, setSearchedProducts] = useState('Омлет');
+  const [searchedProducts, setSearchedProducts] = useState('');
   const dispatch = useDispatch();
   const myProducts = useSelector(getProductSearch);
   
@@ -14,14 +14,15 @@ export const DiaryAddProductForm = () => {
   
   const handleChange = event => {
     setSearchedProducts(event.target.value);
-    search(searchedProducts);
   };
   
+  console.log(searchedProducts);
+
   useEffect(() => {
     if (searchedProducts.length !== 0) {
+      
       dispatch(search(searchedProducts));
     }
-    // console.log(myProducts);
   }, [dispatch, searchedProducts]);
 
   return (
