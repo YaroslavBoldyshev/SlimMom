@@ -37,20 +37,17 @@ export const DiaryAddProductForm = () => {
       __v: 0,
     },
   ];
-  
+
   return (
     <div>
-      <input list="brow"/>
+      <input list="brow" />
       <datalist id="brow">
         {products.map(product => {
-          return <option value={product.title.ua}></option>
+          return <option value={product.title.ua}></option>;
         })}
-      </datalist> 
+      </datalist>
       <input type="text" />
-      <button
-        type="button"
-        onClick={() => dispatch(deleteItem(id))}
-      >
+      <button type="button" onClick={() => dispatch(deleteItem(id))}>
         <img src="./" alt="add" />
       </button>
     </div>
