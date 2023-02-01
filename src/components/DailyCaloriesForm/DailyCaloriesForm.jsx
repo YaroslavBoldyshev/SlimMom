@@ -9,6 +9,7 @@ import { selectUserId } from 'redux/user/user-selectors';
 
 export const DailyCaloriesForm = () => {
   const summary = useSelector(getDailyRate);
+  console.log(summary);
   const [isModalShown, setIsModalShown] = useState(false);
   const [form, setForm] = useState({
     height: '',
@@ -17,9 +18,14 @@ export const DailyCaloriesForm = () => {
     desiredWeight: '',
     bloodType: '',
   });
+  // ===============
+  const isLoggedIn = useSelector(getIsLoggedIn);
+  const userId = useSelector(selectUserId);
+
 
   const isLoggedIn = useSelector(getIsLoggedIn);
   const userId = useSelector(selectUserId);
+
   const dispatch = useDispatch();
   const onChange = e => {
     const { value, name } = e.target;
@@ -44,7 +50,9 @@ export const DailyCaloriesForm = () => {
     if (isLoggedIn) {
       console.log(userId);
       console.log(formData);
+
       dispatch(named({ userId, formData }));
+
     } else {
       dispatch(unnamed(formData));
       setIsModalShown(prevState => !prevState);
@@ -55,7 +63,9 @@ export const DailyCaloriesForm = () => {
         desiredWeight: '',
         bloodType: '',
       });
+
       e.currentTarget.reset();
+
     }
   };
 
@@ -163,7 +173,9 @@ export const DailyCaloriesForm = () => {
           <Button type="submit">Start losing weight</Button>
         </WrapperButton>
       </form>
+
       {isModalShown && <Modal sum={summary} />}
+
     </div>
   );
 };
@@ -235,7 +247,6 @@ const RadioButtonDiv = styled.div`
     color: #9b9faa;
     margin-right: -28px;
   }
-
   input {
     position: absolute;
     opacity: 0;

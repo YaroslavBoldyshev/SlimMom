@@ -6,31 +6,43 @@ import PublicRoute from './PublicRoute/PublicRoute';
 
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import NotFound from '../pages/NotFound/NotFound';
-// import Container from './Container/Container';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSidSelector } from 'redux/auth/auth-selectors';
+import { refresh } from 'redux/auth/auth-operations';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Login = lazy(() => import('pages/Login/Login'));
 const Registration = lazy(() => import('pages/Registration/Registration'));
 const Main = lazy(() => import('pages/Main/Main'));
-const Dairy = lazy(() => import('pages/Dairy/Dairy'));
+const DairyPage = lazy(() => import('pages/DairyPage/DairyPage'));
 const Calculator = lazy(() => import('pages/Calculator/Calculator'));
 
-export const App = () => (
-  <>
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Home />} />
-        <Route path="/main" element={<Main />} />
-        <Route path="/" element={<PrivateRoute />}>
-          <Route path="/diary" element={<Dairy />} />
-          <Route path="/calculator" element={<Calculator />} />
+export const App = () => {
+  const dispatch = useDispatch()
+  const sesId = useSelector(getSidSelector);
+
+  useEffect(() => {
+    dispatch(refresh({sid: sesId}))
+  }, [dispatch])
+  
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/diary" element={<DairyPage />} />
+            <Route path="/calculator" element={<Calculator />} />
+          </Route>
+          <Route path="/" element={<PublicRoute />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Registration />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="/" element={<PublicRoute />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Registration />} />
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
-  </>
-);
+      </Routes>
+    </>
+  )
+};

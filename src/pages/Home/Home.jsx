@@ -11,7 +11,6 @@ display: none;
     top: 0px;
     right: 0;
     z-index: -1;
-
   }
 `
 
@@ -23,7 +22,6 @@ display: none;
     top: 0px;
     right: 0;
     z-index: -1;
-    
   }
 `
 
@@ -38,7 +36,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
-
