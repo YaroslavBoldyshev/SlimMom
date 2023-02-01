@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-// eslint-disable-next-line
 import { named } from 'redux/dailyRate/dailyRate-operations';
 import { search } from './productSearch-operations';
 
