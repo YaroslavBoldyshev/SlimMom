@@ -4,9 +4,9 @@
   "private": true,
   "homepage": "https://YaroslavBoldyshev.github.io/SlimMom/",
   "dependencies": {
+    "@emotion/styled": "^11.10.5",
     "@redux-devtools/extension": "^3.2.5",
     "@reduxjs/toolkit": "^1.9.1",
-    
     "axios": "^1.2.5",
     "js-cookie": "^3.0.1",
     "modern-normalize": "^1.1.0",
