@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductSearch } from '../../redux/productSearch/productSearch-selectors';
+import { getProductSearch, getProductId } from '../../redux/productSearch/productSearch-selectors';
+
 import { search } from '../../redux/productSearch/productSearch-operations'
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
 import { addDayProductThunk } from 'redux/day/day-operations';
@@ -38,9 +39,24 @@ export const DiaryAddProductForm = () => {
       productId: key
     }));
   };
+  
+  const productHandleChange = e => {
+    dispatch(search(productSelected));
+    setProductSelected(e.target.value);
+    console.log(e.target.key);
+    // if (productSelected === '') {
+    // }
+  }
+  
+  // useEffect(() => {
+  //   if (productSelected !== '') {
+  // // const optionHandleClick = () => {
 
   const handleSubmit = () => {
     dispatch(addDayProductThunk());
+  };
+
+    dispFinal()
   };
 
   return (
@@ -57,6 +73,7 @@ export const DiaryAddProductForm = () => {
           value={form.product}
           onChange={handleChange}
           name="product"
+          key={1111}
         />
 
         <div >

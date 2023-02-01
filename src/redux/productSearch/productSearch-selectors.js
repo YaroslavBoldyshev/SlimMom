@@ -1,7 +1,10 @@
 export const getProductSearch = state => state.productSearch.products;
 
-const productSearchSelectors = {
-  getProductSearch,
-};
+export const getProductSearch = state => state.productSearch.products;
 
-export default productSearchSelectors;
+export const getProductId = state => state.productSearch.products.map(product => {
+  return {
+    name: product.title.ru,
+    id: product._id
+  }
+});

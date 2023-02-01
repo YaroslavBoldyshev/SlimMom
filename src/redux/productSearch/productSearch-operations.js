@@ -3,6 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://slimmom-backend.goit.global';
 
+
+
 export const search = createAsyncThunk('/product', async (name, thunkAPI) => {
     const tokenDefault = thunkAPI.getState().auth.accessToken;
 
