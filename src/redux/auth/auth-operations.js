@@ -55,6 +55,7 @@ export const logOut = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
+
   }
 );
 
@@ -78,7 +79,9 @@ export const refresh = createAsyncThunk(
     try {
       
       const { data } = await axios.post('/auth/refresh', credential);
+
       accessToken.set(data.newAccessToken);
+
       sid.set(data.sid);
       return data;
     } catch (error) {

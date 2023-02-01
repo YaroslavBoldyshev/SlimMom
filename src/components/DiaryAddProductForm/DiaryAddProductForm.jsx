@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -5,11 +6,14 @@ import { getProductSearch } from '../../redux/productSearch/productSearch-select
 import { search } from '../../redux/productSearch/productSearch-operations'
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
 
-export const DiaryAddProductForm = () => {
 
-  const [searchedProducts, setSearchedProducts] = useState('');
+
+export const DiaryAddProductForm = () => {
+  const [searchProduct, setSearchProduct] = useState("");
+  // const [productsItem, setProductsItem] = useState([]);
   const dispatch = useDispatch();
   const myProducts = useSelector(getProductSearch);
+
   const [myDate, setMyDate] = useState('')
    const [form, setForm] = useState({
      date: '',
@@ -21,12 +25,13 @@ export const DiaryAddProductForm = () => {
   //   setSearchedProducts(event.target.value);
   // };
 
-  useEffect(() => {
-    if (searchedProducts.length !== 0) {
-      
-      dispatch(search(searchedProducts));
-    }
-  }, [dispatch, searchedProducts]);
+
+  const handleClick = event => {
+    setSearchProduct(event.target.value);
+    dispatch(search('apple'));
+    console.log(myProducts);
+  }
+
 
   const handleChange = e => {
     const { value, name } = e.target;
@@ -72,6 +77,7 @@ export const DiaryAddProductForm = () => {
       <div>
         <DiaryProductsList currentDate={myDate} />
       </div>
+
     </div>
   );
 };
