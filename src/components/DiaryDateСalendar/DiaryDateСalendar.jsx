@@ -1,3 +1,9 @@
+import { DiaryDateCalendarStyled } from './DiaryDateСalendar.styled';
+
 export const DiaryDateCalendar = () => {
-  return <div>DiaryDateCalendar</div>;
+  return <DiaryDateCalendarStyled>
+  <div className="DiaryDateCalendarStyled__calendar">
+  DiaryDateCalendar
+  </div>;
+  </DiaryDateCalendarStyled>
 };

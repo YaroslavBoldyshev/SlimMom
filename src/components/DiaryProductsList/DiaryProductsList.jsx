@@ -1,4 +1,5 @@
 import { DiaryProductsListItem } from "./DiaryProductsListItem/DiaryProductsListItem";
+import { DiaryProductsListStyled } from "./DiaryProductsList.styled";
 
 export const DiaryProductsList = () => {
   const meal = [
@@ -29,9 +30,10 @@ export const DiaryProductsList = () => {
   ];
 
   return (
-    <ul>
+    <DiaryProductsListStyled>
+    <ul className="DiaryProductsListStyled-list">
       {meal.map(({id, title, weight, kcal}) => 
-        <li key={id}>
+        <li className="DiaryProductsListStyled-list__item" key={id}>
           <DiaryProductsListItem
             name={title}
             weight={weight}
@@ -40,5 +42,6 @@ export const DiaryProductsList = () => {
         </li>
       )}
     </ul>
+    </DiaryProductsListStyled>
   );
 };

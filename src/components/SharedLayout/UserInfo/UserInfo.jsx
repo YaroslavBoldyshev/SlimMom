@@ -1,5 +1,6 @@
 import { logOut } from 'redux/auth/auth-operations';
 import { UserContainer, UserLogOut, UserName } from './UserInfo.styled';
+// eslint-disable-next-line
 import { useDispatch, useSelector } from 'react-redux';
 // import { getUsername } from 'redux/auth/auth-selectors';
 
