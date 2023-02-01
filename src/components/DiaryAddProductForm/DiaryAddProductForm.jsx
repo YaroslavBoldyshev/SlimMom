@@ -56,9 +56,6 @@ export const DiaryAddProductForm = () => {
     dispatch(addDayProductThunk());
   };
 
-    dispFinal()
-  };
-
   return (
     <div>
       <form onSubmit={handleSubmit}>

@@ -22,10 +22,6 @@ export const DailyCaloriesForm = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const userId = useSelector(selectUserId);
 
-
-  const isLoggedIn = useSelector(getIsLoggedIn);
-  const userId = useSelector(selectUserId);
-
   const dispatch = useDispatch();
   const onChange = e => {
     const { value, name } = e.target;

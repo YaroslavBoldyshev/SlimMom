@@ -18,7 +18,7 @@ const daySlice = createSlice({
         state.error = null;
       })
       .addCase(addDayProductThunk.fulfilled, (state, action) => {
-        state.isLoading = true;
+        state.isLoading = false;
         state.error = null;
         state.addProduct = action.payload;
       })
