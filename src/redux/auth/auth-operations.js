@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import cookie from 'js-cookie';
 
 axios.defaults.baseURL = 'https://slimmom-backend.goit.global';
 
@@ -9,12 +8,6 @@ const clearAuthHeader = () => {
 };
 
 const accessToken = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-};
-
-const refreshToken = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -31,9 +24,7 @@ export const register = createAsyncThunk(
   async (credential, thunkAPI) => {
     try {
       const { data } = await axios.post('/auth/register', credential);
-      accessToken.set(data.token);
-      refreshToken.set(data.token);
-      sid.set(data.sid);
+      accessToken.set(data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -46,10 +37,7 @@ export const logIn = createAsyncThunk(
   async (credential, thunkAPI) => {
     try {
       const { data } = await axios.post('/auth/login', credential);
-      accessToken.set(data.token);
-      refreshToken.set(data.token);
-      sid.set(data.sid);
-      cookie.set('sid', data.sid);
+      accessToken.set(data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -57,12 +45,10 @@ export const logIn = createAsyncThunk(
   }
 );
 
-export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+export const logOut = createAsyncThunk('auth/logout', async (credential, thunkAPI) => {
   try {
-    await axios.post('/auth/logout');
-    accessToken.unset();
-    refreshToken.unset();
-    sid.unset();
+    const { data } = await axios.post('/auth/logout', credential);
+    accessToken.set(data.token);
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -74,8 +60,7 @@ export const refresh = createAsyncThunk(
   async (credential, thunkAPI) => {
     try {
       const { data } = await axios.post('/auth/refresh', credential);
-      accessToken.set(data.token);
-      refreshToken.set(data.token);
+      accessToken.set(data.accessToken);
       sid.set(data.sid);
       return data;
     } catch (error) {
