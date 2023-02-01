@@ -56,7 +56,7 @@ export const DiaryAddProductForm = () => {
         <input type="date" name="date" value={myDate} onChange={dataChange} />
         <input
           list="brow"
-          value={searchedProducts}
+          value={searchProduct}
           onChange={handleChange}
           name="product"
         />
