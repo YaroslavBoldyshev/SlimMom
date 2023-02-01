@@ -8,6 +8,7 @@ import { getDailyRate } from 'redux/dailyRate/dailyRate-selectors';
 
 export const DailyCaloriesForm = () => {
   const summary = useSelector(getDailyRate);
+  console.log(summary);
   const [isModalShown, setIsModalShown] = useState(false);
   const [form, setForm] = useState({
     height: '',
@@ -156,6 +157,7 @@ export const DailyCaloriesForm = () => {
       {isModalShown && (
         <Modal
           sum={summary}
+          onClose={setIsModalShown}
           // onClose={onSwitchModal}
         />
       )}

@@ -20,7 +20,7 @@ export const named = createAsyncThunk(
   'dailyRate/named',
   async (userId, thunkAPI) => {
     try {
-      const { data } = await axios.post(`/daily-rate${userId}`);
+      const { data } = await axios.post(`/daily-rate/${userId}`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
