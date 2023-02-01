@@ -48,7 +48,6 @@ export const DailyCaloriesForm = () => {
       console.log(formData);
 
       dispatch(named({ userId, formData }));
-
     } else {
       dispatch(unnamed(formData));
       setIsModalShown(prevState => !prevState);
@@ -61,7 +60,6 @@ export const DailyCaloriesForm = () => {
       });
 
       e.currentTarget.reset();
-
     }
   };
 
@@ -170,8 +168,7 @@ export const DailyCaloriesForm = () => {
         </WrapperButton>
       </form>
 
-      {isModalShown && <Modal sum={summary} />}
-
+      {isModalShown && <Modal sum={summary} onClose={setIsModalShown} />}
     </div>
   );
 };
