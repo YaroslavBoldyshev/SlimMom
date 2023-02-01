@@ -1,5 +1,3 @@
-import Container from 'components/Container/Container';
-import Loader from 'components/Loader/Loader';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -57,8 +55,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <Container>
-      {isLoading ? <Loader /> : null}
+    <>
       <RegisterForm onSubmit={handleSubmit}>
         <Title>Register</Title>
         <Label>
@@ -93,7 +90,7 @@ const RegistrationForm = () => {
           <LogButton type="button">Log In</LogButton>
         </NavLink>
       </RegisterForm>
-    </Container>
+    </>
   );
 };
 
