@@ -17,7 +17,6 @@ const productSearchSlice = createSlice({
       state.isLoading = false;
     },
     [search.rejected](state, action) {
-      console.log(action);
       state.error = action.payload;
       state.isLoading = false;
     },

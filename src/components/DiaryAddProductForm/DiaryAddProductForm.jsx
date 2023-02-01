@@ -6,55 +6,65 @@ import { getProductSearch, getProductId } from '../../redux/productSearch/produc
 import { search } from '../../redux/productSearch/productSearch-operations'
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
 import { addDayProductThunk } from 'redux/day/day-operations';
+import { getDayInfoThunk } from 'redux/day/day-operations';
 
 export const DiaryAddProductForm = () => {
   let currentDate = new Date().toJSON().slice(0, 10);
   const dispatch = useDispatch();
   const myProducts = useSelector(getProductSearch);
+  const [productSearch, setProductSearch] = useState("")
   const [form, setForm] = useState({
     date: `${currentDate}`,
-    product: '',
     productId: '',
     weight: 0,
   });
+  const[isLoading, setIsLoading] = useState(false)
 
-  // const handleChange = event => {
-  //   setSearchedProducts(event.target.value);
-  // };
-
-  // useEffect(() => {
-  // }, [dispatch]);
-  
-  const handleChange = e => {
-    const { value, name, key } = e.target;
-    if (form.product.length !== 0) {
-      dispatch(search(form.product));
-      // setForm.productId()
-      console.log(key);
+  useEffect(() => {
+    if (productSearch !== '') {
+      dispatch(search(productSearch));
     }
-
+  }, [productSearch]);
+  
+  const dataHandleClick = e => {
     setForm(state => ({
       ...state,
-      [name]: value,
-      productId: key
+      date: e.target.value
     }));
-  };
-  
-  const productHandleChange = e => {
-    dispatch(search(productSelected));
-    setProductSelected(e.target.value);
-    console.log(e.target.key);
-    // if (productSelected === '') {
-    // }
   }
   
-  // useEffect(() => {
-  //   if (productSelected !== '') {
-  // // const optionHandleClick = () => {
-
-  const handleSubmit = () => {
-    dispatch(addDayProductThunk());
+  const productHandleClick = e => {
+    const thatINeed = e.target.value.split(',');
+    setProductSearch(thatINeed[0]);
+    setForm(state => ({
+      ...state,
+      productId: thatINeed[1],
+    }));
   };
+
+  const weightHandleClick = e => {
+    setForm(state => ({
+      ...state,
+      weight: e.target.value,
+    }));
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    dispatch(addDayProductThunk(form));
+    setForm(state => ({
+      ...state,
+      productId: '',
+      weight: 0,
+    }));
+    setProductSearch("")
+    setIsLoading(true)
+  };
+
+  useEffect(() => {
+    dispatch(getDayInfoThunk({ date: form.date }));
+    setIsLoading(false);
+  }, [dispatch, isLoading])
 
   return (
     <div>
@@ -63,38 +73,39 @@ export const DiaryAddProductForm = () => {
           type="date"
           name="date"
           value={form.date}
-          onChange={handleChange}
+          onChange={dataHandleClick}
         />
         <input
+          type="text"
           list="brow"
-          value={form.product}
-          onChange={handleChange}
+          value={[productSearch]}
+          onChange={productHandleClick}
           name="product"
-          key={1111}
         />
 
-        <div >
-          <datalist id="brow">
+        <div>
+          <datalist id="brow" onChange={e => console.log(e)}>
             {Array.isArray(myProducts) &&
               myProducts.map(product => {
                 return (
                   <option
-                    value={product.title.ru}
                     key={product._id}
+                    value={[product.title.ua, product._id]}
                   ></option>
                 );
-            })}
+              })}
           </datalist>
         </div>
 
-        <input type="number" name="weight" />
+        <input type="number" name="weight" onChange={weightHandleClick} />
 
         <button type="submit">
           <img src="./" alt="add" />
         </button>
       </form>
       <div>
-        <DiaryProductsList currentDate={form.data} />
+        <DiaryProductsList currentDate={form.date} />
+ 
       </div>
     </div>
   );

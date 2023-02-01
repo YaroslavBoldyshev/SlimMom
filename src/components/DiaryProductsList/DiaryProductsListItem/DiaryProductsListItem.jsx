@@ -1,20 +1,21 @@
+import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { deleteDayProductThunk } from "redux/day/day-operations";
-import { selectEatenId } from "redux/day/day-selectors";
+import { selectEatenId } from 'redux/day/day-selectors';
 
-export const DiaryProductsListItem = ({ name, weight, kcal, id }) => {
+export const DiaryProductsListItem = ({ name, weight, kcal, id, dayId }) => {
   const dispatch = useDispatch();
-  const dayId = useSelector(selectEatenId);
+  const mayDayId = useSelector(selectEatenId);
   
   const dayData = {
-    dayId: dayId,
-    eatenProductId: id
-  }
+    dayId: mayDayId,
+    eatenProductId: id,
+  };
 
   const handleDelete = e => {
-    dispatch(deleteDayProductThunk(dayData));
+      dispatch(deleteDayProductThunk(dayData));
   }
 
   return (

@@ -18,13 +18,11 @@ export const addDayProductThunk = createAsyncThunk(
 
 export const deleteDayProductThunk = createAsyncThunk(
   'day/delete',
-  async (dayId, thunkAPI) => {
+  async (dateForDelete, thunkAPI) => {
     const tokenDefault = thunkAPI.getState().auth.accessToken;
-
     axios.defaults.headers.common.Authorization = `Bearer ${tokenDefault}`;
     try {
-      console.log(dayId);
-      const { data } = await axios.delete('/day', dayId);
+      const { data } = await axios.delete('/day', dateForDelete);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -34,12 +32,11 @@ export const deleteDayProductThunk = createAsyncThunk(
 
 export const getDayInfoThunk = createAsyncThunk(
   'day/getInfo',
-  async (date, thunkAPI) => {
-      const tokenDefault = thunkAPI.getState().auth.accessToken;
-
-      axios.defaults.headers.common.Authorization = `Bearer ${tokenDefault}`;
+  async (dateForAdd, thunkAPI) => {
+    const tokenDefault = thunkAPI.getState().auth.accessToken;
+    axios.defaults.headers.common.Authorization = `Bearer ${tokenDefault}`;
     try {
-      const { data } = await axios.post('/day/info', date);
+      const { data } = await axios.post('/day/info', dateForAdd);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
