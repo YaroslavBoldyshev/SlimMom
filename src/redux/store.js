@@ -14,6 +14,8 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { dayProductInfoReducer } from './day/day-slice';
+import { userInfoReducer } from './user/user-slice';
 
 const middleware = getDefaultMiddleware =>
   getDefaultMiddleware({
@@ -25,14 +27,17 @@ const middleware = getDefaultMiddleware =>
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['accessToken'],
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+
     dailyRate: dailyRateReducer,
     productSearch: productSearchReducer,
+    dayProductInfo: dayProductInfoReducer,
+    userInfo: userInfoReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

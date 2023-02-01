@@ -12,14 +12,12 @@ import logoMom from '../images/Mom.svg';
 
 export const Logo = () => {
   return (
-    // <link>
-    <LogoContainer>
+    <LogoContainer to="/">
       <LogoImg src={logoIcon} alt="logo" />
       <LogoText>
         <LogoSlim src={logoSlim} />
         <LogoMom src={logoMom} />
       </LogoText>
     </LogoContainer>
-    /* </link> */
   );
 };

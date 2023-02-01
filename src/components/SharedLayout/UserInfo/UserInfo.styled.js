@@ -19,6 +19,8 @@ export const UserContainer = styled.div`
   }
   @media screen and (min-width: 1280px) {
     padding: 0px 20px;
+    display: flex;
+    align-items: center;
   }
 `;
 
@@ -35,17 +37,20 @@ export const UserName = styled.div`
   }
 `;
 
-export const UserLogOut = styled.div`
+export const UserLogOut = styled.button`
   font-weight: 700;
   font-size: 14px;
   line-height: 1.2;
   letter-spacing: 0.04em;
   color: #9b9faa;
+  border: none;
+  background-color: transparent;
   padding: 10px 0px 8px 10px;
   margin-left: 10px;
+  cursor: pointer;
   border-left: 2px solid #e0e0e0;
   @media screen and (min-width: 1280px) {
-    padding: 15px 0px 0px 10px;
+    padding: 6px 0px 0px 10px;
     height: 100%;
   }
 `;
