@@ -1,6 +1,13 @@
 import { DiaryProductsListItem } from "./DiaryProductsListItem/DiaryProductsListItem";
+import { selectEatenProducts } from "redux/day/day-selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getDayInfoThunk } from "redux/day/day-operations";
 
-export const DiaryProductsList = () => {
+export const DiaryProductsList = ({currentDate}) => {
+  const dayMeal = useSelector(selectEatenProducts);
+  const dispatch = useDispatch()
+
   const meal = [
     {
       title: 'Меланж яичный',
@@ -28,17 +35,22 @@ export const DiaryProductsList = () => {
     },
   ];
 
+  useEffect(() => {
+    dispatch(getDayInfoThunk({date: currentDate}));
+  },[])
+
   return (
     <ul>
-      {meal.map(({id, title, weight, kcal}) => 
-        <li key={id}>
-          <DiaryProductsListItem
-            name={title}
-            weight={weight}
-            kcal={kcal}
-          />
-        </li>
-      )}
+      {Array.isArray(dayMeal) && dayMeal.map(({id, title, weight, kcal}) => {
+        return (
+          <li key={id}>
+            <DiaryProductsListItem
+              name={title}
+              weight={weight}
+              kcal={kcal}
+            />
+          </li>
+        )})}
     </ul>
   );
 };

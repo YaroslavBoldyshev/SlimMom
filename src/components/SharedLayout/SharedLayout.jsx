@@ -15,7 +15,6 @@ export const SharedLayout = () => {
       <LayoutContainer>
         <Logo />
         <Navigation />
-        <UserInfo />
       </LayoutContainer>
       <Container>
         <Suspense fallback={<Loader />}>
