@@ -14,5 +14,6 @@ export const LayoutContainer = styled.div`
     justify-content: flex-start;
     background-color: transparent;
     height: 170px;
+    width: 100%;
   }
 `;
