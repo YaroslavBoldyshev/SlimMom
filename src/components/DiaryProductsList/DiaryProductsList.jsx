@@ -1,7 +1,17 @@
 import { DiaryProductsListItem } from "./DiaryProductsListItem/DiaryProductsListItem";
+
 import { DiaryProductsListStyled } from "./DiaryProductsList.styled";
 
-export const DiaryProductsList = () => {
+import { selectEatenProducts } from "redux/day/day-selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getDayInfoThunk } from "redux/day/day-operations";
+
+export const DiaryProductsList = ({currentDate}) => {
+  const dayMeal = useSelector(selectEatenProducts);
+  const dispatch = useDispatch()
+
+
   const meal = [
     {
       title: 'Меланж яичный',
@@ -29,6 +39,10 @@ export const DiaryProductsList = () => {
     },
   ];
 
+  useEffect(() => {
+    dispatch(getDayInfoThunk({date: currentDate}));
+  },[])
+
   return (
     <DiaryProductsListStyled>
     <ul className="DiaryProductsListStyled-list">
@@ -41,6 +55,7 @@ export const DiaryProductsList = () => {
           />
         </li>
       )}
+
     </ul>
     </DiaryProductsListStyled>
   );

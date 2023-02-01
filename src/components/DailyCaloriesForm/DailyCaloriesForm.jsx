@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import Modal from 'components/Modal/Modal';
-// import { useDispatch } from 'react-redux';
 import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { unnamed } from 'redux/dailyRate/dailyRate-operations';
+import { unnamed, named } from 'redux/dailyRate/dailyRate-operations';
 import { getDailyRate } from 'redux/dailyRate/dailyRate-selectors';
+import { getIsLoggedIn } from 'redux/auth/auth-selectors';
+import { selectUserId } from 'redux/user/user-selectors';
 
 export const DailyCaloriesForm = () => {
   const summary = useSelector(getDailyRate);
+  console.log(summary);
   const [isModalShown, setIsModalShown] = useState(false);
   const [form, setForm] = useState({
     height: '',
@@ -16,6 +18,13 @@ export const DailyCaloriesForm = () => {
     desiredWeight: '',
     bloodType: '',
   });
+  // ===============
+  const isLoggedIn = useSelector(getIsLoggedIn);
+  const userId = useSelector(selectUserId);
+
+
+  const isLoggedIn = useSelector(getIsLoggedIn);
+  const userId = useSelector(selectUserId);
 
   const dispatch = useDispatch();
   const onChange = e => {
@@ -31,24 +40,33 @@ export const DailyCaloriesForm = () => {
     e.preventDefault();
 
     const formData = {
-      height: e.target.elements.height.value,
-      age: e.target.elements.age.value,
-      weight: e.target.elements.weight.value,
-      desiredWeight: e.target.elements.desiredWeight.value,
-      bloodType: e.target.elements.bloodType.value,
+      weight: form.weight,
+      height: form.height,
+      age: form.age,
+      desiredWeight: form.desiredWeight,
+      bloodType: form.bloodType,
     };
 
-    console.log(formData);
-    dispatch(unnamed(formData));
-    setIsModalShown(prevState => !prevState);
-    setForm({
-      height: '',
-      weight: '',
-      age: '',
-      desiredWeight: '',
-      bloodType: '',
-    });
-    e.currentTarget.reset();
+    if (isLoggedIn) {
+      console.log(userId);
+      console.log(formData);
+
+      dispatch(named({ userId, formData }));
+
+    } else {
+      dispatch(unnamed(formData));
+      setIsModalShown(prevState => !prevState);
+      setForm({
+        height: '',
+        weight: '',
+        age: '',
+        desiredWeight: '',
+        bloodType: '',
+      });
+
+      e.currentTarget.reset();
+
+    }
   };
 
   return (
@@ -113,7 +131,9 @@ export const DailyCaloriesForm = () => {
                   onChange={onChange}
                   required
                 />
-                <label htmlFor="1">1</label>
+                <label htmlFor="">1</label>
+
+                <span></span>
               </RadioButtonDiv>
               <RadioButtonDiv>
                 <input
@@ -144,7 +164,7 @@ export const DailyCaloriesForm = () => {
                   onChange={onChange}
                   required
                 />
-                <label htmlFor="">4</label>
+                <label htmlFor=""> 4</label>
               </RadioButtonDiv>
             </RadioButtonWrapper>
           </WrapperInputRight>
@@ -153,12 +173,9 @@ export const DailyCaloriesForm = () => {
           <Button type="submit">Start losing weight</Button>
         </WrapperButton>
       </form>
-      {isModalShown && (
-        <Modal
-          sum={summary}
-          // onClose={onSwitchModal}
-        />
-      )}
+
+      {isModalShown && <Modal sum={summary} />}
+
     </div>
   );
 };
@@ -171,6 +188,7 @@ const Title = styled.h1`
   font-size: 18px;
   line-height: 140%;
   margin-bottom: 34px;
+  margin-top: 32px;
 
   @media (min-width: 768px) {
     width: 504px;
@@ -178,9 +196,11 @@ const Title = styled.h1`
     font-size: 34px;
     line-height: 140%;
     margin-bottom: 68px;
+    margin-top: 95px;
   }
 
   @media (min-width: 1280px) {
+    margin-top: 144px;
   }
 `;
 
@@ -197,11 +217,10 @@ const Form = styled.div`
 `;
 
 const RadioButtonWrapper = styled.div`
-/* display: flex;
-align-items: center;
-  justify-content: center; */
-  padding: 0;
   display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
   column-gap: 24px;
   width: 240px;
   margin-bottom: 40px;
@@ -211,58 +230,58 @@ align-items: center;
 const RadioButtonDiv = styled.div`
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: flex-start;
+  column-gap: 8px;
   padding: 0;
+  width: 40px;
 
   label {
     cursor: pointer;
-     display: flex;
-     align-items: center;
+    display: flex;
     justify-content: center;
-    font-weight: 500;
+    align-items: center;
+    font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0.04em;
     color: #9b9faa;
-    
+    margin-right: -28px;
+  }
+  input {
+    position: absolute;
+    opacity: 0;
   }
 
   label::before {
     content: '';
+    display: flex;
+    justify-content: center;
     border: 1px solid #e0e0e0;
     width: 20px;
     height: 20px;
     border-radius: 50%;
     margin-right: 8px;
-    display: flex; 
-    align-items: center;
-    justify-content: center; 
   }
 
   input {
+    display: flex;
+    justify-content: center;
     cursor: pointer;
     width: 40px;
     opacity: 0;
     position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
   input:checked {
     & + label::before {
-     /* display: flex; */
-       /* justify-content: center;
-      align-items: center;  */
+      display: flex;
+      justify-content: center;
       content: '⬤';
-      width: 20px;
-      height: 20px;
-      border: 1px solid #e0e0e0;
+      align-items: center;
     }
     & + label {
-      /* display: flex;
-      justify-content: center;
-      align-items: center; */
       color: #fc842d;
+      display: flex;
+      justify-content: center;
     }
   }
 `;

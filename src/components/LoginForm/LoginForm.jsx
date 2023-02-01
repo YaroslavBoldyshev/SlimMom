@@ -1,12 +1,6 @@
-
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  register,
-  logIn,
-  logOut,
-  refresh,
-} from '../../redux/auth/auth-operations';
+import { logIn } from '../../redux/auth/auth-operations';
 import Container from 'components/Container/Container';
 import {
   Input,
@@ -35,23 +29,19 @@ const LoginForm = () => {
     }
   };
 
-  const authOperations = { register, logIn, logOut, refresh };
+  const authOperations = { logIn };
 
   const handleSubmit = e => {
     e.preventDefault();
     const formData = { email: email.toLowerCase(), password };
-    dispatch(authOperations.register(formData))
-      .then(() => {
-        dispatch(logIn({ email: email.toLowerCase(), password }));
-      })
-      .catch(error => error(error.message));
+    dispatch(authOperations.logIn(formData));
 
     setEmail('');
     setPassword('');
   };
 
   return (
-    <Container>
+    <>
       <LogForm onSubmit={handleSubmit}>
         <Title>Log In</Title>
         <Label>
@@ -75,7 +65,7 @@ const LoginForm = () => {
         <LogButton type="submit">Log In</LogButton>
         <RegButton type="button">Register</RegButton>
       </LogForm>
-    </Container>
+    </>
   );
 };
 
