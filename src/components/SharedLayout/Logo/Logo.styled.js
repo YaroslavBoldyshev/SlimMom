@@ -29,7 +29,7 @@ export const LogoImg = styled.img`
 `;
 
 export const LogoText = styled.div`
-  display: none;
+  display: flex;
   width: 105px;
   height: 16px;
   @media screen and (min-width: 768px) {

@@ -6,17 +6,13 @@ export default function Container({ children }) {
 }
 
 const Section = styled.section`
-  width: 100%;
   @media screen and (max-width: 767px) {
-    width: 320px;
-    padding: 300px 40px 0px 40px;
+    padding: 40px 40px 0px 40px;
   }
   @media screen and (min-width: 768px) {
-    width: 768px;
-    padding: 300px 40px 0px 40px;
+    padding: 100px 40px 0px 40px;
   }
   @media screen and (min-width: 1280px) {
-    width: 1280px;
     padding: 300px 40px 0px 40px;
   }
 `;
