@@ -45,22 +45,43 @@ export const logIn = createAsyncThunk(
   }
 );
 
-export const logOut = createAsyncThunk('auth/logout', async (credential, thunkAPI) => {
-  try {
-    const { data } = await axios.post('/auth/logout', credential);
-    accessToken.set(data.token);
-    clearAuthHeader();
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const logOut = createAsyncThunk(
+  'auth/logout',
+  async (credential, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/auth/logout', credential);
+      accessToken.set(data.token);
+      clearAuthHeader();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+
   }
-});
+);
 
 export const refresh = createAsyncThunk(
   'auth/refresh',
   async (credential, thunkAPI) => {
+    //   const tokenDefault = JSON.parse(localStorage.getItem('persist:auth'));
+
+    //   const config = {
+    //     headers: {
+    //       Authorization: `Bearer ${tokenDefault.refreshToken.replaceAll(
+    //         `"`,
+    //         ''
+    //       )}`,
+    //     },
+    // };
+    
+      const tokenDefault = thunkAPI.getState().auth.refreshToken;
+
+      axios.defaults.headers.common.Authorization = `Bearer ${tokenDefault}`;
     try {
+      
       const { data } = await axios.post('/auth/refresh', credential);
-      accessToken.set(data.accessToken);
+
+      accessToken.set(data.newAccessToken);
+
       sid.set(data.sid);
       return data;
     } catch (error) {

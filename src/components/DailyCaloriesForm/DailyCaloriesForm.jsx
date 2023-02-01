@@ -3,8 +3,10 @@ import Modal from 'components/Modal/Modal';
 // import { useDispatch } from 'react-redux';
 import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { unnamed } from 'redux/dailyRate/dailyRate-operations';
+import { unnamed, named } from 'redux/dailyRate/dailyRate-operations';
 import { getDailyRate } from 'redux/dailyRate/dailyRate-selectors';
+import { getIsLoggedIn } from 'redux/auth/auth-selectors';
+import { selectUserId } from 'redux/user/user-selectors';
 
 export const DailyCaloriesForm = () => {
   const summary = useSelector(getDailyRate);
@@ -16,7 +18,11 @@ export const DailyCaloriesForm = () => {
     desiredWeight: '',
     bloodType: '',
   });
+  // ===============
+  const isLoggedIn = useSelector(getIsLoggedIn);
+  const userId = useSelector(selectUserId);
 
+// ==========
   const dispatch = useDispatch();
   const onChange = e => {
     const { value, name } = e.target;
@@ -31,24 +37,29 @@ export const DailyCaloriesForm = () => {
     e.preventDefault();
 
     const formData = {
-      height: e.target.elements.height.value,
-      age: e.target.elements.age.value,
-      weight: e.target.elements.weight.value,
-      desiredWeight: e.target.elements.desiredWeight.value,
-      bloodType: e.target.elements.bloodType.value,
+      weight: form.weight,
+      height: form.height,
+      age: form.age,
+      desiredWeight: form.desiredWeight,
+      bloodType: form.bloodType,
     };
 
-    console.log(formData);
-    dispatch(unnamed(formData));
-    setIsModalShown(prevState => !prevState);
-    setForm({
-      height: '',
-      weight: '',
-      age: '',
-      desiredWeight: '',
-      bloodType: '',
-    });
-    e.currentTarget.reset();
+    if (isLoggedIn) {
+      console.log(userId);
+      console.log(formData);
+      dispatch(named({userId, formData}));
+
+    } else {
+      dispatch(unnamed(formData));
+      setIsModalShown(prevState => !prevState);
+      setForm({
+        height: '',
+        weight: '',
+        age: '',
+        desiredWeight: '',
+        bloodType: '',
+      });
+    }
   };
 
   return (
