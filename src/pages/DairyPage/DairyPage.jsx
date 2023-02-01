@@ -1,9 +1,9 @@
 import { Diary } from 'components/Diary/Diary';
 
-export default function Dairy() {
+export default function DairyPage() {
   return (
-    <>
+    <div>
       <Diary />
-    </>
+    </div>
   );
 }

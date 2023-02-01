@@ -19,6 +19,7 @@ import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 export const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const IsLoggedIn = useSelector(getIsLoggedIn);
+
   return (
     <NavigationContainer>
       {IsLoggedIn ? (

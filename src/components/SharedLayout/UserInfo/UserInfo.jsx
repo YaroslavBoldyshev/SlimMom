@@ -1,15 +1,22 @@
 import { logOut } from 'redux/auth/auth-operations';
 import { UserContainer, UserLogOut, UserName } from './UserInfo.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsername } from 'redux/auth/auth-selectors';
+import { selectUserName } from 'redux/user/user-selectors';
+import { getUserInfo } from 'redux/user/user-operations';
+import { useEffect } from 'react';
 
 export const UserInfo = () => {
   const dispatch = useDispatch();
-  const userName = useSelector(getUsername);
+
+  useEffect(() => {
+    dispatch(getUserInfo());
+  }, [dispatch]);
+
+  const user = useSelector(selectUserName);
   return (
     <UserContainer>
-      <UserName>{userName}</UserName>
-      <UserLogOut onClick={() => dispatch(logOut)}>LogOut</UserLogOut>
+      <UserName>{user}</UserName>
+      <UserLogOut onClick={() => dispatch(logOut())}>LogOut</UserLogOut>
     </UserContainer>
   );
 };

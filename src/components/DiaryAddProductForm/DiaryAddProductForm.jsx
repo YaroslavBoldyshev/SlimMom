@@ -26,7 +26,9 @@ export const DiaryAddProductForm = () => {
         })} */}
       </datalist>
       <input type="text" />
+
       <button type="button">
+
         <img src="./" alt="add" />
       </button>
     </div>

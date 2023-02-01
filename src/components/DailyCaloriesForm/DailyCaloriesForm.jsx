@@ -1,8 +1,14 @@
 import { useState } from 'react';
+import Modal from 'components/Modal/Modal';
 // import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { unnamed } from 'redux/dailyRate/dailyRate-operations';
+import { getDailyRate } from 'redux/dailyRate/dailyRate-selectors';
 
 export const DailyCaloriesForm = () => {
+  const summary = useSelector(getDailyRate);
+  const [isModalShown, setIsModalShown] = useState(false);
   const [form, setForm] = useState({
     height: '',
     age: '',
@@ -11,7 +17,7 @@ export const DailyCaloriesForm = () => {
     bloodType: '',
   });
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const onChange = e => {
     const { value, name } = e.target;
 
@@ -26,7 +32,6 @@ export const DailyCaloriesForm = () => {
 
     const formData = {
       height: e.target.elements.height.value,
-
       age: e.target.elements.age.value,
       weight: e.target.elements.weight.value,
       desiredWeight: e.target.elements.desiredWeight.value,
@@ -34,7 +39,8 @@ export const DailyCaloriesForm = () => {
     };
 
     console.log(formData);
-    // dispatch(calculateDailyRate(formData));
+    dispatch(unnamed(formData));
+    setIsModalShown(prevState => !prevState);
     setForm({
       height: '',
       weight: '',
@@ -51,51 +57,52 @@ export const DailyCaloriesForm = () => {
       <form onSubmit={onSubmit}>
         <Form>
           <WrapperInputLeft>
-            <Input
-              type="text"
-              name="height"
-              placeholder="Height *"
-              value={form.height}
-              onChange={onChange}
-              required
-              //   pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            />
-            <Input
-              type="text"
-              name="age"
-              placeholder="Age *"
-              value={form.age}
-              onChange={onChange}
-              required
-              //   pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            />
-            <Input
-              type="text"
-              name="weight"
-              placeholder="Current weight*"
-              value={form.weight}
-              onChange={onChange}
-              required
-              //   pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            />
+            <InputContainer>
+              <label htmlFor="">Height *</label>
+              <input
+                type="number"
+                name="height"
+                value={form.height}
+                onChange={onChange}
+                required
+              />
+            </InputContainer>
+            <InputContainer>
+              <label htmlFor="">Age *</label>
+              <input
+                type="number"
+                name="age"
+                value={form.age}
+                onChange={onChange}
+                required
+              />
+            </InputContainer>
+            <InputContainer>
+              <label htmlFor="">Current weight *</label>
+              <input
+                type="number"
+                name="weight"
+                value={form.weight}
+                onChange={onChange}
+                required
+              />
+            </InputContainer>
           </WrapperInputLeft>
           <WrapperInputRight>
-            <Input
-              type="text"
-              name="desiredWeight"
-              placeholder="Desired weight *"
-              value={form.desiredWeight}
-              onChange={onChange}
-              required
-              //   pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            />
-
-            <BloodTypeInput
-              placeholder="Blood type *"
-              type="text"
-              readonly
-              disabled
-            />
+            <InputContainer>
+              <label htmlFor="">Desired weight *</label>
+              <input
+                type="number"
+                name="desiredWeight"
+                value={form.desiredWeight}
+                onChange={onChange}
+                required
+              />
+            </InputContainer>
+            <BloodTypeInput>
+              <label htmlFor="">Blood type *</label>
+              <input type="text" disabled />
+            </BloodTypeInput>
             <RadioButtonWrapper>
               <RadioButtonDiv>
                 <input
@@ -146,6 +153,12 @@ export const DailyCaloriesForm = () => {
           <Button type="submit">Start losing weight</Button>
         </WrapperButton>
       </form>
+      {isModalShown && (
+        <Modal
+          sum={summary}
+          // onClose={onSwitchModal}
+        />
+      )}
     </div>
   );
 };
@@ -184,24 +197,29 @@ const Form = styled.div`
 `;
 
 const RadioButtonWrapper = styled.div`
+  /* display: flex;
+align-items: center;
+  justify-content: center; */
   padding: 0;
   display: flex;
   column-gap: 24px;
   width: 240px;
   margin-bottom: 40px;
+  margin-top: 8px;
 `;
 
 const RadioButtonDiv = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   padding: 0;
 
   label {
     cursor: pointer;
     display: flex;
     align-items: center;
-    font-weight: 700;
+    justify-content: center;
+    font-weight: 500;
     font-size: 14px;
     line-height: 17px;
     letter-spacing: 0.04em;
@@ -215,79 +233,92 @@ const RadioButtonDiv = styled.div`
     height: 20px;
     border-radius: 50%;
     margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   input {
     cursor: pointer;
     width: 40px;
-
     opacity: 0;
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   input:checked {
     & + label::before {
-      display: flex;
-      justify-content: center;
-
-      align-items: center;
+      /* display: flex; */
+      /* justify-content: center;
+      align-items: center;  */
       content: '⬤';
-
       width: 20px;
       height: 20px;
       border: 1px solid #e0e0e0;
     }
     & + label {
+      /* display: flex;
+      justify-content: center;
+      align-items: center; */
       color: #fc842d;
     }
   }
 `;
 
-const Input = styled.input`
-  border: none;
-  border-bottom: 1px solid #e0e0e0;
-  width: 240px;
-  outline: none;
-  padding-bottom: 8px;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: 0.04em;
-  color: #454647;
-  background-color: #fff;
-`;
+const InputContainer = styled.div`
+  label {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+    color: #9b9faa;
+  }
 
-const BloodTypeInput = styled.input`
-  border: none;
-  background-color: #fff;
-  width: 240px;
-  outline: none;
-  padding-bottom: 8px;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: 0.04em;
-  color: #454647;
-  margin-top: 32px;
-
-  @media (min-width: 768px) {
+  input {
+    border: none;
     border-bottom: 1px solid #e0e0e0;
-    margin-bottom: 13px;
+    width: 240px;
+    outline: none;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+    color: #454647;
+    background-color: #fff;
   }
 `;
 
-// const InputRadioButton = styled.input`
-//   width: 20px;
-//   height: 20px;
-//   margin-right: 8px;
-// `;
+const BloodTypeInput = styled.div`
+  label {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+    color: #9b9faa;
+  }
 
-/* const BloodTypeParagraph = styled.p`
-  font-weight: 700;
-font-size: 14px;
-line-height: 1.2;
-letter-spacing: 0.04em;
-color: #9B9FAA;
-` */
+  input {
+    @media (max-width: 768px) {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      border: none;
+      border-bottom: 1px solid #e0e0e0;
+      width: 240px;
+      height: 12px;
+      outline: none;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 17px;
+      letter-spacing: 0.04em;
+      color: #454647;
+      background-color: #ffffff;
+    }
+  }
+  margin-top: 35px;
+`;
 
 const Button = styled.button`
   width: 210px;
