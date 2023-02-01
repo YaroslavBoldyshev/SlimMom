@@ -7,51 +7,66 @@ import {
 // import { unnamed } from 'redux/dailyRate/dailyRate-operations';
 // import { getDailyRate } from 'redux/dailyRate/dailyRate-selectors';
 import mySvg from '../../icons/close.svg';
-import RegisterLink from './Modal.styled';
-import { isDailyLoading } from 'redux/dailyRate/dailyRate-selectors';
+import { RegisterLink } from './Modal.styled';
+import { SumKcal } from './Modal.styled';
+import { ModWin } from './Modal.styled';
+import { ModCon } from './Modal.styled';
+import { BtnClose } from './Modal.styled';
+import { OverlayWin } from './Modal.styled';
+import { Title } from './Modal.styled';
+import { TopEdge } from './Modal.styled';
+import { ListTitle } from './Modal.styled';
+import { NumList } from './Modal.styled';
+import {
+  getNotAllow,
+  isDailyLoading,
+} from 'redux/dailyRate/dailyRate-selectors';
+import { useEffect } from 'react';
 
-const Modal = ({ sum }) => {
+const Modal = ({ sum, onClose }) => {
   const isLoading = useSelector(isDailyLoading);
-  // const [summary, setSummary] = useState('');
-  // const summary = useSelector(getDailyRate);
-  // const dispatch = useDispatch();
-  // console.log(summary);
-  if (sum !== undefined) {
-    console.log(sum);
-  }
+  const products = useSelector(getNotAllow);
+  console.log(products);
 
-  // useEffect(() => {
-  // dispatch(
-  //   unnamed({
-  //     weight: 100,
-  //     height: 170,
-  //     age: 30,
-  //     desiredWeight: 60,
-  //     bloodType: 1,
-  //   })
-  // );
-  // setSummary(useSelector(getDailyRate));
-  // }, [dispatch, summary]);
+  useEffect(() => {
+    const handleKeyDown = e => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
 
-  const products = [];
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
+
+  const handleBackdrop = e => {
+    if (e.target === e.currentTarget) onClose();
+  };
+
   return createPortal(
     <>
       {!isLoading && (
-        <div>
-          <button type="button">
-            <img src={mySvg} alt="close"></img>
-          </button>
-          <h2> Your recommended daily calorie intake is</h2>
-          <p>
-            {sum} <span>kcal</span>
-          </p>
-          <ol>
-            {products.map(prod => (
-              <li key={prod.id} />
-            ))}
-          </ol>
-          <RegisterLink to="/register">Start losing weight </RegisterLink>
-        </div>
+        <OverlayWin onClick={handleBackdrop}>
+          <ModWin>
+            <ModCon>
+              <TopEdge>
+                <BtnClose type="button" onClick={() => onClose(false)}>
+                  <img src={mySvg} alt="close"></img>
+                </BtnClose>
+              </TopEdge>
+              <Title> Your recommended daily calorie intake is</Title>
+              <SumKcal>
+                {sum} <span>kcal</span>
+              </SumKcal>
+              <ListTitle>Foods you should not eat</ListTitle>
+              <NumList>
+                {products.length &&
+                  products.map(prod => <li key={prod.id}>{prod}</li>)}
+              </NumList>
+              <RegisterLink to="/register">Start losing weight </RegisterLink>
+            </ModCon>
+          </ModWin>
+        </OverlayWin>
       )}
     </>,
     document.querySelector('#portalModal')
