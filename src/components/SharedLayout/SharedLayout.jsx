@@ -6,6 +6,9 @@ import { Logo } from './Logo/Logo';
 import { Navigation } from './Navigation/Navigation';
 import { LayoutContainer } from './SharedLayout.styled';
 import Loader from 'components/Loader/Loader';
+import { UserInfo } from './UserInfo/UserInfo';
+import { RightSideBar } from 'components/RightSideBar/RightSideBar';
+
 export const SharedLayout = () => {
   return (
     <>
@@ -15,7 +18,11 @@ export const SharedLayout = () => {
       </LayoutContainer>
       <Container>
         <Suspense fallback={<Loader />}>
-          <Outlet />
+          <Outlet>
+            <div>
+              <RightSideBar />
+            </div>
+          </Outlet>
         </Suspense>
       </Container>
     </>

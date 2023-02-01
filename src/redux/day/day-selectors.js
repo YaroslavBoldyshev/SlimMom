@@ -1,0 +1,1 @@
+export const selectEatenProducts = state => state.dayProductInfo.dayInfo.eatenProducts

@@ -6,16 +6,14 @@ export default function Container({ children }) {
 }
 
 const Section = styled.section`
-  padding: 32px 20px 60px 20px;
-  padding-top: 32px;
   @media screen and (max-width: 767px) {
+    padding: 40px 40px 0px 40px;
   }
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    padding: 100px 32px 60px 32px;
+  @media screen and (min-width: 768px) {
+    padding: 100px 40px 0px 40px;
   }
   @media screen and (min-width: 1280px) {
-    padding-top: 293px;
-    padding-left: 16px;
+    padding: 300px 40px 0px 40px;
   }
 `;
 

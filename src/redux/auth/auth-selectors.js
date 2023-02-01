@@ -10,12 +10,4 @@ export const isLoaded = state => state.isLoading;
 
 export const getAccessToken = state => state.auth.accessToken;
 
-const authSelectors = {
-  getIsLoggedIn,
-  getUsername,
-  getUserData,
-  getTodaySummary,
-  getAccessToken,
-};
-
-export default authSelectors;
+export const getSidSelector = state => state.auth.sid;
