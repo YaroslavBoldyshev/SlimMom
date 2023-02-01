@@ -37,7 +37,7 @@ export const DiaryProductsList = ({currentDate}) => {
 
   useEffect(() => {
     dispatch(getDayInfoThunk({date: currentDate}));
-  },[])
+  },[dispatch])
 
   return (
     <ul>

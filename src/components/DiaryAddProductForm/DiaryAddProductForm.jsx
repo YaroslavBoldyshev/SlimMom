@@ -4,73 +4,83 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProductSearch } from '../../redux/productSearch/productSearch-selectors';
 import { search } from '../../redux/productSearch/productSearch-operations'
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
+import { addDayProductThunk } from 'redux/day/day-operations';
 
 export const DiaryAddProductForm = () => {
-
-  const [searchedProducts, setSearchedProducts] = useState('');
+  let currentDate = new Date().toJSON().slice(0, 10);
   const dispatch = useDispatch();
   const myProducts = useSelector(getProductSearch);
-  const [myDate, setMyDate] = useState('')
-   const [form, setForm] = useState({
-     date: '',
-     product: '',
-     weight: 0,
-   });
-  
+  const [form, setForm] = useState({
+    date: `${currentDate}`,
+    product: '',
+    productId: '',
+    weight: 0,
+  });
+
   // const handleChange = event => {
   //   setSearchedProducts(event.target.value);
   // };
 
-  useEffect(() => {
-    if (searchedProducts.length !== 0) {
-      
-      dispatch(search(searchedProducts));
-    }
-  }, [dispatch, searchedProducts]);
-
+  // useEffect(() => {
+  // }, [dispatch]);
+  
   const handleChange = e => {
-    const { value, name } = e.target;
+    const { value, name, key } = e.target;
+    if (form.product.length !== 0) {
+      dispatch(search(form.product));
+      // setForm.productId()
+      console.log(key);
+    }
 
     setForm(state => ({
       ...state,
       [name]: value,
+      productId: key
     }));
   };
 
   const handleSubmit = () => {
-
-  }
-
-  const dataChange = event => {
-    setMyDate(event.target.value)
-  }
+    dispatch(addDayProductThunk());
+  };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input type="date" name="date" value={myDate} onChange={dataChange} />
+        <input
+          type="date"
+          name="date"
+          value={form.date}
+          onChange={handleChange}
+        />
         <input
           list="brow"
-          value={searchedProducts}
+          value={form.product}
           onChange={handleChange}
           name="product"
         />
-        <datalist id="brow">
-          {Array.isArray(myProducts) &&
-            myProducts.map(product => {
-              return (
-                <option value={product.title.ru} key={product._id}></option>
-              );
+
+        <div >
+          <datalist id="brow">
+            {Array.isArray(myProducts) &&
+              myProducts.map(product => {
+                return (
+                  <option
+                    value={product.title.ru}
+                    key={product._id}
+                  ></option>
+                );
             })}
-        </datalist>
-        <input type="text" name="weight" />
+          </datalist>
+        </div>
+
+        <input type="number" name="weight" />
 
         <button type="submit">
           <img src="./" alt="add" />
         </button>
       </form>
       <div>
-        <DiaryProductsList currentDate={myDate} />
+        <DiaryProductsList currentDate={form.data} />
       </div>
     </div>
   );
