@@ -4,7 +4,10 @@ export const DiaryAddStyled = styled.div`
 .DiaryAddStyled-wrapper {
   margin-bottom: 60px;
   margin-right: 0px;
+  display: flex;
   @media screen and (max-width: 767px) {
+    margin-top: 60px;
+    display: flex;
    }
 
   &__product {
@@ -40,18 +43,22 @@ export const DiaryAddStyled = styled.div`
     margin-right: 60px;
   }
 
-  &__btn {
-    border: none;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background-color: #fc842d;
-    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  }
-
   &__img {
     color: #ffffff;
     width: 14px;
     height: 14px;
+  }
+
+  &__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    width: auto;
+    height: auto;
+    padding: 20px;
+    border-radius: 50%;
+    background-color: #fc842d;
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   }
 }`;
