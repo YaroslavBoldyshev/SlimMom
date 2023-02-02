@@ -22,6 +22,7 @@ export const deleteDayProductThunk = createAsyncThunk(
     const { dayId, eatenProductId } = dateForDelete;
     try {
       const response = await axios.delete('/day', { data: {dayId, eatenProductId} })
+
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.massage);

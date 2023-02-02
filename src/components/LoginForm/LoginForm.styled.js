@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export const LogForm = styled.form`
   width: 400px;
@@ -60,7 +61,11 @@ export const LogButton = styled.button`
   }
 `;
 
-export const RegButton = styled.button`
+export const RegButton = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   width: 182px;
   padding: 13px 15px;
   font-size: 14px;
@@ -74,8 +79,10 @@ export const RegButton = styled.button`
 `;
 
 export const ButtonsWrapper = styled.div`
+  display: flex;  
+  flex-direction: row;
+
   @media screen and (max-width: 767px) {
-    display: flex;
     flex-direction: column;
     margin-bottom: 20px;
     margin-left: 30px;

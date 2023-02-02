@@ -105,7 +105,7 @@ export const DiaryAddProductForm = () => {
         <input type="number" name="weight" onChange={weightHandleClick} className="DiaryAddStyled-wrapper__grams" placeholder="Grams"/>
 
 
-        <button className="DiaryAddStyled-wrapper__btn" type="button">
+        <button className="DiaryAddStyled-wrapper__btn" type="submit">
           <img
             className="DiaryAddStyled-wrapper__img"
             src={addSvg}
