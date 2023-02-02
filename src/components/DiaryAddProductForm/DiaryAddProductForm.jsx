@@ -44,7 +44,7 @@ export const DiaryAddProductForm = () => {
     }));
   };
 
-  const weightHandleClick = e => {
+  const weightChange = e => {
     setForm(state => ({
       ...state,
       weight: e.target.value,
@@ -69,55 +69,60 @@ export const DiaryAddProductForm = () => {
   }, [dispatch, isLoading])
 
   return (
-   <DiaryAddStyled>
-    <div className="DiaryAddStyled-wrapper">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="date"
-          name="date"
-          value={form.date}
-          onChange={dataHandleClick}
-          className="DiaryAddStyled-wrapper__product"
-        />
-        <input
-          type="text"
-          list="brow"
-          value={[productSearch]}
-          onChange={productHandleClick}
-          name="product"
-          placeholder="Food"
-        />
-
-        <div>
-          <datalist id="brow" onChange={e => console.log(e)}>
-            {Array.isArray(myProducts) &&
-              myProducts.map(product => {
-                return (
-                  <option
-                    key={product._id}
-                    value={[product.title.ua, product._id]}
-                  ></option>
-                );
-              })}
-          </datalist>
-        </div>
-
-        <input type="number" name="weight" onChange={weightHandleClick} className="DiaryAddStyled-wrapper__grams" placeholder="Grams"/>
-
-
-        <button className="DiaryAddStyled-wrapper__btn" type="submit">
-          <img
-            className="DiaryAddStyled-wrapper__img"
-            src={addSvg}
-            alt="add"
+    <DiaryAddStyled>
+      <div className="DiaryAddStyled-wrapper">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="date"
+            name="date"
+            value={form.date}
+            onChange={dataHandleClick}
+            className="DiaryAddStyled-wrapper__product"
           />
-        </button>
-      </form>
-      <div>
-        <DiaryProductsList currentDate={form.date} />
+          <input
+            type="text"
+            list="brow"
+            value={[productSearch]}
+            onChange={productHandleClick}
+            name="product"
+            placeholder="Food"
+          />
+
+          <div>
+            <datalist id="brow" onChange={e => console.log(e)}>
+              {Array.isArray(myProducts) &&
+                myProducts.map(product => {
+                  return (
+                    <option
+                      key={product._id}
+                      value={[product.title.ua, product._id]}
+                    ></option>
+                  );
+                })}
+            </datalist>
+          </div>
+
+          <input
+            type="number"
+            name="weight"
+            value={form.weight}
+            onChange={weightChange}
+            className="DiaryAddStyled-wrapper__grams"
+            placeholder="Grams"
+          />
+
+          <button className="DiaryAddStyled-wrapper__btn" type="submit">
+            <img
+              className="DiaryAddStyled-wrapper__img"
+              src={addSvg}
+              alt="add"
+            />
+          </button>
+        </form>
+        <div>
+          <DiaryProductsList currentDate={form.date} />
+        </div>
       </div>
-      
-    </div>
     </DiaryAddStyled>
   );
 };
