@@ -21,6 +21,7 @@ const daySlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.addProduct = action.payload;
+        localStorage.setItem('productToAdd', JSON.stringify(action.payload.eatenProduct));
       })
       .addCase(addDayProductThunk.rejected, (state, action) => {
         state.isLoading = false;
@@ -34,8 +35,10 @@ const daySlice = createSlice({
         state.deleteProduct = action.payload;
         state.isLoading = false;
         state.error = null;
+        localStorage.setItem('productToDelete', JSON.stringify(action.payload));
       })
       .addCase(deleteDayProductThunk.rejected, (state, action) => {
+        console.log(action.payload);
         state.isLoading = false;
         state.error = action.payload;
       })
@@ -47,6 +50,7 @@ const daySlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.dayInfo = action.payload;
+        localStorage.setItem('prodList', JSON.stringify(action.payload));
       })
       .addCase(getDayInfoThunk.rejected, (state, action) => {
         state.isLoading = false;

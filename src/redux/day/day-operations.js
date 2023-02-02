@@ -19,11 +19,10 @@ export const addDayProductThunk = createAsyncThunk(
 export const deleteDayProductThunk = createAsyncThunk(
   'day/delete',
   async (dateForDelete, thunkAPI) => {
-    const tokenDefault = thunkAPI.getState().auth.accessToken;
-    axios.defaults.headers.common.Authorization = `Bearer ${tokenDefault}`;
+    const { dayId, eatenProductId } = dateForDelete;
     try {
-      const { data } = await axios.delete('/day', dateForDelete);
-      return data;
+      const response = await axios.delete('/day', { data: {dayId, eatenProductId} })
+      return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

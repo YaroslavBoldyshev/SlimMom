@@ -1,5 +1,5 @@
 import { DiaryProductsListItem } from "./DiaryProductsListItem/DiaryProductsListItem";
-import { selectEatenProducts } from "redux/day/day-selectors";
+import { selectDeletedSummary, selectEatenProducts } from "redux/day/day-selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getDayInfoThunk } from "redux/day/day-operations";
@@ -7,12 +7,14 @@ import { selectIsLoading } from "redux/day/day-selectors";
 
 export const DiaryProductsList = ({currentDate}) => {
   const dayMeal = useSelector(selectEatenProducts);
+  const deletedProduct = useSelector(selectDeletedSummary);
+
   const isLoading = useSelector(selectIsLoading);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getDayInfoThunk({ date: currentDate }));
-  }, [currentDate]);
+  }, [currentDate, deletedProduct]);
 
   return (
     <ul>
