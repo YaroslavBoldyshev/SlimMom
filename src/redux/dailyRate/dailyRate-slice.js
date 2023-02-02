@@ -22,35 +22,36 @@ const authSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  extraReducers: {
+  extraReducers: builder => {
+    builder
     // unnamed=======================================================
-    [unnamed.pending](state) {
+    .addCase(unnamed.pending, (state) => {
       state.isLoading = true;
-    },
-    [unnamed.fulfilled](state, action) {
+    })
+    .addCase(unnamed.fulfilled, (state, action) => {
       state.dailyRate = action.payload.dailyRate;
       state.notAllowedProducts = action.payload.notAllowedProducts;
       state.isLoading = false;
-    },
-    [unnamed.rejected](state, action) {
+    })
+    .addCase(unnamed.rejected, (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
-    },
+    })
     // named=========================================================
-    [named.pending](state) {
+    .addCase(named.pending, (state) => {
       state.isLoading = true;
-    },
-    [named.fulfilled](state, action) {
+    })
+    .addCase(named.fulfilled, (state, action) => {
       state.id = action.payload.id;
       state.dailyRate = action.payload.dailyRate;
       state.summaries = action.payload.summaries;
       state.notAllowedProducts = action.payload.notAllowedProducts;
       state.isLoading = false;
-    },
-    [named.rejected](state, action) {
+    })
+    .addCase(named.rejected, (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
-    },
+    })
   },
 });
 
