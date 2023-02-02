@@ -57,7 +57,7 @@ export const DiaryAddProductForm = () => {
     setForm(state => ({
       ...state,
       productId: '',
-      weight: '',
+      weight: "",
     }));
     setProductSearch("")
     setIsLoading(true)

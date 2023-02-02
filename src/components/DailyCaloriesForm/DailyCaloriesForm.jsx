@@ -9,7 +9,6 @@ import { selectUserId } from 'redux/user/user-selectors';
 
 export const DailyCaloriesForm = () => {
   const summary = useSelector(getDailyRate);
-  console.log(summary);
   const [isModalShown, setIsModalShown] = useState(false);
   const [form, setForm] = useState({
     height: '',
@@ -87,7 +86,7 @@ export const DailyCaloriesForm = () => {
                 value={form.age}
                 onChange={onChange}
                 required
-              />
+              />  
             </InputContainer>
             <InputContainer>
               <label htmlFor="">Current weight *</label>
