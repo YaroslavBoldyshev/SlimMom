@@ -1,5 +1,7 @@
 import { DiaryProductsListItem } from "./DiaryProductsListItem/DiaryProductsListItem";
 import { selectDeletedSummary, selectEatenProducts } from "redux/day/day-selectors";
+import { DiaryProductsListStyled } from "./DiaryProductsList.styled";
+import { selectEatenProducts } from "redux/day/day-selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getDayInfoThunk } from "redux/day/day-operations";
@@ -17,13 +19,14 @@ export const DiaryProductsList = ({currentDate}) => {
   }, [currentDate, deletedProduct]);
 
   return (
-    <ul>
+<DiaryProductsListStyled>
+    <ul className="DiaryProductsListStyled-list">
       {!isLoading && (
         <>
           {Array.isArray(dayMeal) &&
             dayMeal.map(({ id, title, weight, kcal }) => {
               return (
-                <li key={id}>
+                <li className="DiaryProductsListStyled-list__item" key={id}>
                   <DiaryProductsListItem
                     name={title}
                     weight={weight}
@@ -36,5 +39,6 @@ export const DiaryProductsList = ({currentDate}) => {
         </>
       )}
     </ul>
+    </DiaryProductsListStyled>
   );
 };

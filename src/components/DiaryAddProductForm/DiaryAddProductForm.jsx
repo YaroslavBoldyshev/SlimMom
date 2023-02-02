@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
+import addSvg from '../../icons/add.svg';
+import { DiaryAddStyled } from './DiaryAddProductForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductSearch, getProductId } from '../../redux/productSearch/productSearch-selectors';
 
@@ -67,13 +69,15 @@ export const DiaryAddProductForm = () => {
   }, [dispatch, isLoading])
 
   return (
-    <div>
+   <DiaryAddStyled>
+    <div className="DiaryAddStyled-wrapper">
       <form onSubmit={handleSubmit}>
         <input
           type="date"
           name="date"
           value={form.date}
           onChange={dataHandleClick}
+          className="DiaryAddStyled-wrapper__product"
         />
         <input
           type="text"
@@ -81,6 +85,7 @@ export const DiaryAddProductForm = () => {
           value={[productSearch]}
           onChange={productHandleClick}
           name="product"
+          placeholder="Food"
         />
 
         <div>
@@ -97,16 +102,22 @@ export const DiaryAddProductForm = () => {
           </datalist>
         </div>
 
-        <input type="number" name="weight" onChange={weightHandleClick} />
+        <input type="number" name="weight" onChange={weightHandleClick} className="DiaryAddStyled-wrapper__grams" placeholder="Grams"/>
 
-        <button type="submit">
-          <img src="./" alt="add" />
+
+        <button className="DiaryAddStyled-wrapper__btn" type="button">
+          <img
+            className="DiaryAddStyled-wrapper__img"
+            src={addSvg}
+            alt="add"
+          />
         </button>
       </form>
       <div>
         <DiaryProductsList currentDate={form.date} />
- 
       </div>
+      
     </div>
+    </DiaryAddStyled>
   );
 };

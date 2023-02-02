@@ -54,6 +54,10 @@ export const RegButton = styled.button`
   margin-right: 32px;
   cursor: pointer;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const LogButton = styled.button`
@@ -67,4 +71,13 @@ export const LogButton = styled.button`
   background-color: white;
   border-radius: 30px;
   border: 2px solid #fc842d;
+`;
+
+export const ButtonsWrapper = styled.div`
+  @media screen and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-left: 30px;
+  }
 `;

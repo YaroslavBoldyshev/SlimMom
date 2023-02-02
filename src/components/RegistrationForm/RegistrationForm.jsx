@@ -1,9 +1,11 @@
+import Loader from 'components/Loader/Loader';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { isLoaded } from 'redux/auth/auth-selectors';
 import { register, logIn } from '../../redux/auth/auth-operations';
 import {
+  ButtonsWrapper,
   Input,
   Label,
   LabelPass,
@@ -51,6 +53,7 @@ const RegistrationForm = () => {
 
   return (
     <>
+      {isLoading ? <Loader /> : null}
       <RegisterForm onSubmit={handleSubmit}>
         <Title>Register</Title>
         <Label>
@@ -80,10 +83,12 @@ const RegistrationForm = () => {
             value={password}
           />
         </LabelPass>
-        <RegButton type="submit">Register</RegButton>
-        <NavLink to="/login">
-          <LogButton type="button">Log In</LogButton>
-        </NavLink>
+        <ButtonsWrapper>
+          <RegButton type="submit">Register</RegButton>
+          <NavLink to="/login">
+            <LogButton type="button">Log In</LogButton>
+          </NavLink>
+        </ButtonsWrapper>
       </RegisterForm>
     </>
   );

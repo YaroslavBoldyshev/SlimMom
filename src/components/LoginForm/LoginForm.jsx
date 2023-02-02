@@ -10,6 +10,7 @@ import {
   RegButton,
   LogForm,
   Title,
+  ButtonsWrapper,
 } from './LoginForm.styled';
 
 const LoginForm = () => {
@@ -62,8 +63,10 @@ const LoginForm = () => {
             value={password}
           />
         </LabelPass>
-        <LogButton type="submit">Log In</LogButton>
-        <RegButton type="button">Register</RegButton>
+        <ButtonsWrapper>
+          <LogButton type="submit">Log In</LogButton>
+          <RegButton type="button">Register</RegButton>
+        </ButtonsWrapper>
       </LogForm>
     </>
   );
