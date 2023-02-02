@@ -1,11 +1,6 @@
 // import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import {
-  // useDispatch,
-  useSelector,
-} from 'react-redux';
-// import { unnamed } from 'redux/dailyRate/dailyRate-operations';
-// import { getDailyRate } from 'redux/dailyRate/dailyRate-selectors';
+import { useSelector } from 'react-redux';
 import mySvg from '../../icons/close.svg';
 import { RegisterLink } from './Modal.styled';
 import { SumKcal } from './Modal.styled';
@@ -60,7 +55,7 @@ const Modal = ({ sum, onClose }) => {
               </SumKcal>
               <ListTitle>Foods you should not eat</ListTitle>
               <NumList>
-                {products.length &&
+                {products.length > 0 &&
                   products.map(prod => <li key={prod.id}>{prod}</li>)}
               </NumList>
               <RegisterLink to="/register">Start losing weight </RegisterLink>
