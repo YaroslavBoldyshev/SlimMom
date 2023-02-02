@@ -10,11 +10,11 @@ export const Diary = () => {
     <Div>
       <DiaryAddProductForm />
       <RightSideBar
-        date={myInfo.date}
-        left={myInfo.daySummary.kcalLeft}
-        consumed={myInfo.daySummary.kcalConsumed}
-        rate={myInfo.daySummary.dailyRate}
-        normal={myInfo.daySummary.percentsOfDailyRate}
+        // date={myInfo.date}
+        // left={myInfo.daySummary.kcalLeft}
+        // consumed={myInfo.daySummary.kcalConsumed}
+        // rate={myInfo.daySummary.dailyRate}
+        // normal={myInfo.daySummary.percentsOfDailyRate}
         // food={ }
       />
     </Div>

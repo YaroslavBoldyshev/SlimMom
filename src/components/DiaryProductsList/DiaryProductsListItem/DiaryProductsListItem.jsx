@@ -2,9 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteDayProductThunk } from "redux/day/day-operations";
 import { selectEatenId } from 'redux/day/day-selectors';
 import { selectEatenProducts } from 'redux/day/day-selectors';
-
+import { IconClose } from "./DiaryProductsListItem.styled";
 import { DiaryProductsListItemStyled } from "./DiaryProductsListItem.styled";
-import closeSvg from '../../../icons/close.svg';
 
 export const DiaryProductsListItem = ({ name, weight, kcal, id }) => {
   const dispatch = useDispatch();
@@ -39,7 +38,7 @@ export const DiaryProductsListItem = ({ name, weight, kcal, id }) => {
         type="button"
         onClick={() => handleDelete(id)}
       >
-        <img src="./" alt="close" width="12" height="12" />
+        <IconClose/>
       </button>
     </div>
    </DiaryProductsListItemStyled>
