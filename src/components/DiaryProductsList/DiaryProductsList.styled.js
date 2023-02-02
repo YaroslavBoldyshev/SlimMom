@@ -15,7 +15,7 @@ export const DiaryProductsListStyled = styled.div`
     }
   }
   &__item{
-    width: 600px
+    width: auto;
   }
 
 }

@@ -9,7 +9,7 @@ export const DiaryProductsListItemStyled = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 600px;
+  width: auto;
   align-items: center;
   margin-bottom: 15px;
   font-family: Verdana, sans-serif;
