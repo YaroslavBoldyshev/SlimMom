@@ -3,9 +3,12 @@ import { useState } from 'react';
 import addSvg from '../../icons/add.svg';
 import { DiaryAddStyled } from './DiaryAddProductForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductSearch, getProductId } from '../../redux/productSearch/productSearch-selectors';
+import {
+  getProductSearch,
+  getProductId,
+} from '../../redux/productSearch/productSearch-selectors';
 
-import { search } from '../../redux/productSearch/productSearch-operations'
+import { search } from '../../redux/productSearch/productSearch-operations';
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
 import { addDayProductThunk } from 'redux/day/day-operations';
 import { getDayInfoThunk } from 'redux/day/day-operations';
@@ -14,27 +17,27 @@ export const DiaryAddProductForm = () => {
   let currentDate = new Date().toJSON().slice(0, 10);
   const dispatch = useDispatch();
   const myProducts = useSelector(getProductSearch);
-  const [productSearch, setProductSearch] = useState("")
+  const [productSearch, setProductSearch] = useState('');
   const [form, setForm] = useState({
     date: `${currentDate}`,
     productId: '',
     weight: '',
   });
-  const[isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (productSearch !== '') {
       dispatch(search(productSearch));
     }
   }, [productSearch]);
-  
+
   const dataHandleClick = e => {
     setForm(state => ({
       ...state,
-      date: e.target.value
+      date: e.target.value,
     }));
-  }
-  
+  };
+
   const productHandleClick = e => {
     const thatINeed = e.target.value.split(',');
     setProductSearch(thatINeed[0]);
@@ -52,72 +55,75 @@ export const DiaryAddProductForm = () => {
   };
 
   const handleSubmit = e => {
-    e.preventDefault()
+    e.preventDefault();
     dispatch(addDayProductThunk(form));
     setForm(state => ({
       ...state,
       productId: '',
-      weight: "",
+      weight: '',
     }));
-    setProductSearch("")
-    setIsLoading(true)
+    setProductSearch('');
+    setIsLoading(true);
   };
 
   useEffect(() => {
     dispatch(getDayInfoThunk({ date: form.date }));
     setIsLoading(false);
-  }, [dispatch, isLoading])
+  }, [dispatch, isLoading]);
 
   return (
     <DiaryAddStyled>
       <div className="DiaryAddStyled-wrapper">
-        <form onSubmit={handleSubmit}>
-          <input
-            type="date"
-            name="date"
-            value={form.date}
-            onChange={dataHandleClick}
-            className="DiaryAddStyled-wrapper__product"
-          />
-          <input
-            type="text"
-            list="brow"
-            value={[productSearch]}
-            onChange={productHandleClick}
-            name="product"
-            placeholder="Food"
-          />
-
+        <form onSubmit={handleSubmit} className="DiaryAddStyled-wrapper__form">
           <div>
-            <datalist id="brow" onChange={e => console.log(e)}>
-              {Array.isArray(myProducts) &&
-                myProducts.map(product => {
-                  return (
-                    <option
-                      key={product._id}
-                      value={[product.title.ua, product._id]}
-                    ></option>
-                  );
-                })}
-            </datalist>
+            <input
+              type="date"
+              name="date"
+              value={form.date}
+              onChange={dataHandleClick}
+              className="DiaryAddStyled-wrapper__date"
+            />
           </div>
 
-          <input
-            type="number"
-            name="weight"
-            value={form.weight}
-            onChange={weightChange}
-            className="DiaryAddStyled-wrapper__grams"
-            placeholder="Grams"
-          />
-
-          <button className="DiaryAddStyled-wrapper__btn" type="submit">
-            <img
-              className="DiaryAddStyled-wrapper__img"
-              src={addSvg}
-              alt="add"
+          <div className="DiaryAddStyled-wrapper__foodInput">
+            <input
+              type="text"
+              list="brow"
+              value={[productSearch]}
+              onChange={productHandleClick}
+              name="product"
+              placeholder="Food"
+              className="DiaryAddStyled-wrapper__product"
             />
-          </button>
+            <div>
+              <datalist id="brow" onChange={e => console.log(e)}>
+                {Array.isArray(myProducts) &&
+                  myProducts.map(product => {
+                    return (
+                      <option
+                        key={product._id}
+                        value={[product.title.ua, product._id]}
+                      ></option>
+                    );
+                  })}
+              </datalist>
+            </div>
+            <input
+              type="number"
+              name="weight"
+              value={form.weight}
+              onChange={weightChange}
+              className="DiaryAddStyled-wrapper__grams"
+              placeholder="Grams"
+            />
+            <button className="DiaryAddStyled-wrapper__btn" type="submit">
+              <img
+                className="DiaryAddStyled-wrapper__img"
+                src={addSvg}
+                alt="add"
+              />
+            </button>
+          </div>
         </form>
         <div>
           <DiaryProductsList currentDate={form.date} />
