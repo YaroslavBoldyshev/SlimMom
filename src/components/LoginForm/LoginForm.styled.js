@@ -10,6 +10,11 @@ export const Title = styled.h4`
   margin-bottom: 55px;
   color: #fc842d;
   text-transform: uppercase;
+
+  @media screen and (max-width: 767px) {
+    display: flex;
+    margin-left: 80px;
+  }
 `;
 
 export const Label = styled.label`
@@ -79,12 +84,34 @@ export const RegButton = styled(NavLink)`
 `;
 
 export const ButtonsWrapper = styled.div`
-  display: flex;  
+  display: flex;
   flex-direction: row;
 
   @media screen and (max-width: 767px) {
     flex-direction: column;
     margin-bottom: 20px;
     margin-left: 30px;
+  }
+`;
+
+export const Img = styled.img`
+  display: none;
+  @media (min-width: 768px) and (max-width: 1279px) {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    z-index: -1;
+  }
+`;
+
+export const Image = styled.img`
+  display: none;
+  @media (min-width: 1280px) {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0;
+    z-index: -1;
   }
 `;

@@ -6,6 +6,8 @@ import { isLoaded } from 'redux/auth/auth-selectors';
 import { register, logIn } from '../../redux/auth/auth-operations';
 import {
   ButtonsWrapper,
+  Image,
+  Img,
   Input,
   Label,
   LabelPass,
@@ -14,6 +16,8 @@ import {
   RegisterForm,
   Title,
 } from './RegistrationForm.styled';
+import img from '../../images/homeBgTablet.jpg';
+import image from '../../images/homeBgDesktop.jpg';
 
 const RegistrationForm = () => {
   const [username, setUsername] = useState('');
@@ -90,6 +94,8 @@ const RegistrationForm = () => {
           </NavLink>
         </ButtonsWrapper>
       </RegisterForm>
+      <Img src={img} />
+      <Image src={image} />
     </>
   );
 };

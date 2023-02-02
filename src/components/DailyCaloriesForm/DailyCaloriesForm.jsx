@@ -63,7 +63,7 @@ export const DailyCaloriesForm = () => {
   };
 
   return (
-    <div>
+    <CalculateContainer>
       <Title>Calculate your daily calorie intake right now</Title>
       <form onSubmit={onSubmit}>
         <Form>
@@ -86,7 +86,7 @@ export const DailyCaloriesForm = () => {
                 value={form.age}
                 onChange={onChange}
                 required
-              />  
+              />
             </InputContainer>
             <InputContainer>
               <label htmlFor="">Current weight *</label>
@@ -168,9 +168,17 @@ export const DailyCaloriesForm = () => {
       </form>
 
       {isModalShown && <Modal sum={summary} onClose={setIsModalShown} />}
-    </div>
+    </CalculateContainer>
   );
 };
+
+const CalculateContainer = styled.div`
+  @media (min-width: 768px) {
+  }
+
+  @media (min-width: 1280px) {
+  }
+`;
 
 const Title = styled.h1`
   display: flex;
@@ -180,7 +188,6 @@ const Title = styled.h1`
   font-size: 18px;
   line-height: 140%;
   margin-bottom: 34px;
-  margin-top: 32px;
 
   @media (min-width: 768px) {
     width: 504px;
@@ -188,11 +195,9 @@ const Title = styled.h1`
     font-size: 34px;
     line-height: 140%;
     margin-bottom: 68px;
-    margin-top: 95px;
   }
 
   @media (min-width: 1280px) {
-    margin-top: 144px;
   }
 `;
 
