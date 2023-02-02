@@ -14,7 +14,7 @@ import { refresh } from 'redux/auth/auth-operations';
 const Home = lazy(() => import('pages/Home/Home'));
 const Login = lazy(() => import('pages/Login/Login'));
 const Registration = lazy(() => import('pages/Registration/Registration'));
-const Main = lazy(() => import('pages/Main/Main'));
+// const Main = lazy(() => import('pages/Main/Main'));
 const DairyPage = lazy(() => import('pages/DairyPage/DairyPage'));
 const Calculator = lazy(() => import('pages/Calculator/Calculator'));
 
@@ -31,7 +31,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
-          <Route path="/main" element={<Main />} />
+          {/* <Route path="/main" element={<Main />} /> */}
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/diary" element={<DairyPage />} />
             <Route path="/calculator" element={<Calculator />} />
