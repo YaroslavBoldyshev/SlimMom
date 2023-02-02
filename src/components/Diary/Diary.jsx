@@ -9,14 +9,14 @@ export const Diary = () => {
   return (
     <Div>
       <DiaryAddProductForm />
-      <RightSideBar
+      {/* <RightSideBar
         date={myInfo.date}
-        left={myInfo.daySummary.kcalLeft}
-        consumed={myInfo.daySummary.kcalConsumed}
-        rate={myInfo.daySummary.dailyRate}
-        normal={myInfo.daySummary.percentsOfDailyRate}
+        // left={myInfo.daySummary.kcalLeft}
+        // consumed={myInfo.daySummary.kcalConsumed}
+        // rate={myInfo.daySummary.dailyRate}
+        // normal={myInfo.daySummary.percentsOfDailyRate}
         // food={ }
-      />
+      /> */}
     </Div>
   );
 };

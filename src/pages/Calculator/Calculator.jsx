@@ -5,16 +5,15 @@ import { selectDayInfo } from 'redux/day/day-selectors';
 
 export default function Calculator() {
   const myInfo = useSelector(selectDayInfo);
-
   return (
     <>
       <DailyCaloriesForm />
       <RightSideBar
         date={myInfo.date}
-        left={myInfo.daySummary.kcalLeft}
-        consumed={myInfo.daySummary.kcalConsumed}
-        rate={myInfo.daySummary.dailyRate}
-        normal={myInfo.daySummary.percentsOfDailyRate}
+        // left={myInfo.daySummary.kcalLeft}
+        // consumed={myInfo.daySummary.kcalConsumed}
+        // rate={myInfo.daySummary.dailyRate}
+        // normal={myInfo.daySummary.percentsOfDailyRate}
         // food={ }
       />
       ;
