@@ -18,7 +18,7 @@ export const DiaryAddProductForm = () => {
   const [form, setForm] = useState({
     date: `${currentDate}`,
     productId: '',
-    weight: 0,
+    weight: '',
   });
   const[isLoading, setIsLoading] = useState(false)
 
