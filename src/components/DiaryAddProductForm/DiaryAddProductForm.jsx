@@ -96,7 +96,7 @@ export const DiaryAddProductForm = () => {
               className="DiaryAddStyled-wrapper__product"
             />
             <div>
-              <datalist id="brow" onChange={e => console.log(e)}>
+              <datalist id="brow">
                 {Array.isArray(myProducts) &&
                   myProducts.map(product => {
                     return (

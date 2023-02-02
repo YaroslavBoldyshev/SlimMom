@@ -7,13 +7,13 @@ import { DiaryProductsListItemStyled } from "./DiaryProductsListItem.styled";
 
 export const DiaryProductsListItem = ({ name, weight, kcal, id }) => {
   const dispatch = useDispatch();
-  const mayDayId = useSelector(selectEatenId);
+  const myDayId = useSelector(selectEatenId);
   const dayMeal = useSelector(selectEatenProducts);
   const localDayMeal = JSON.parse(localStorage.getItem('prodList'));
   
   const handleDelete = id => {
     const dayData = {
-      dayId: mayDayId,
+      dayId: myDayId,
       eatenProductId: id,
     };
     const arr1 = [...localDayMeal.eatenProducts]
@@ -22,8 +22,6 @@ export const DiaryProductsListItem = ({ name, weight, kcal, id }) => {
 
     if (arr1.length === arr2.length) {
       dispatch(deleteDayProductThunk(dayData));
-    } else {
-      console.log('/');
     }
   }
 
