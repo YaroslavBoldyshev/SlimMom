@@ -32,6 +32,11 @@ export const LogoText = styled.div`
   display: flex;
   width: 105px;
   height: 16px;
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+
   @media screen and (min-width: 768px) {
     display: flex;
     margin-left: 10px;
@@ -41,8 +46,16 @@ export const LogoText = styled.div`
   }
 `;
 
-export const LogoSlim = styled.img``;
+export const LogoSlim = styled.img`
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+`;
 
 export const LogoMom = styled.img`
   margin-left: 4px;
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
