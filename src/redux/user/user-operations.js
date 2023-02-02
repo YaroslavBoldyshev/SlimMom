@@ -10,8 +10,6 @@ export const getUserInfo = createAsyncThunk('user/get', async (_, thunkAPI) => {
 
   try {
     const { data } = await axios.get('/user');
-
-    console.log(data);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);

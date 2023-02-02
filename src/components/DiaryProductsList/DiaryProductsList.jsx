@@ -1,61 +1,43 @@
 import { DiaryProductsListItem } from "./DiaryProductsListItem/DiaryProductsListItem";
-
+import { selectDeletedSummary, selectEatenProducts } from "redux/day/day-selectors";
 import { DiaryProductsListStyled } from "./DiaryProductsList.styled";
-
 import { selectEatenProducts } from "redux/day/day-selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getDayInfoThunk } from "redux/day/day-operations";
+import { selectIsLoading } from "redux/day/day-selectors";
 
 export const DiaryProductsList = ({currentDate}) => {
   const dayMeal = useSelector(selectEatenProducts);
-  const dispatch = useDispatch()
+  const deletedProduct = useSelector(selectDeletedSummary);
 
-
-  const meal = [
-    {
-      title: 'Меланж яичный',
-      weight: 100,
-      kcal: 157,
-      id: '1',
-    },
-    {
-      title: 'Меланж яичный',
-      weight: 100,
-      kcal: 157,
-      id: '2',
-    },
-    {
-      title: 'Меланж яичный',
-      weight: 100,
-      kcal: 157,
-      id: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
-    },
-    {
-      title: 'Меланж яичный',
-      weight: 100,
-      kcal: 157,
-      id: '3',
-    },
-  ];
+  const isLoading = useSelector(selectIsLoading);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDayInfoThunk({date: currentDate}));
-  },[])
+    dispatch(getDayInfoThunk({ date: currentDate }));
+  }, [currentDate, deletedProduct]);
 
   return (
-    <DiaryProductsListStyled>
+<DiaryProductsListStyled>
     <ul className="DiaryProductsListStyled-list">
-      {meal.map(({id, title, weight, kcal}) => 
-        <li className="DiaryProductsListStyled-list__item" key={id}>
-          <DiaryProductsListItem
-            name={title}
-            weight={weight}
-            kcal={kcal}
-          />
-        </li>
+      {!isLoading && (
+        <>
+          {Array.isArray(dayMeal) &&
+            dayMeal.map(({ id, title, weight, kcal }) => {
+              return (
+                <li className="DiaryProductsListStyled-list__item" key={id}>
+                  <DiaryProductsListItem
+                    name={title}
+                    weight={weight}
+                    kcal={Math.round(kcal)}
+                    id={id}
+                  />
+                </li>
+              );
+            })}
+        </>
       )}
-
     </ul>
     </DiaryProductsListStyled>
   );

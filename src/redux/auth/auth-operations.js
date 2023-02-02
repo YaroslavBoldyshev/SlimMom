@@ -62,27 +62,13 @@ export const logOut = createAsyncThunk(
 export const refresh = createAsyncThunk(
   'auth/refresh',
   async (credential, thunkAPI) => {
-    //   const tokenDefault = JSON.parse(localStorage.getItem('persist:auth'));
-
-    //   const config = {
-    //     headers: {
-    //       Authorization: `Bearer ${tokenDefault.refreshToken.replaceAll(
-    //         `"`,
-    //         ''
-    //       )}`,
-    //     },
-    // };
-    
       const tokenDefault = thunkAPI.getState().auth.refreshToken;
 
       axios.defaults.headers.common.Authorization = `Bearer ${tokenDefault}`;
-    try {
-      
+    try {  
       const { data } = await axios.post('/auth/refresh', credential);
-
-      accessToken.set(data.newAccessToken);
-
       sid.set(data.sid);
+      accessToken.set(data.newAccessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

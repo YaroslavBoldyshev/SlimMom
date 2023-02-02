@@ -20,11 +20,6 @@ export const named = createAsyncThunk(
   'dailyRate/named',
   async ({userId, formData}, thunkAPI) => {
     const tokenDefault = JSON.parse(localStorage.getItem('persist:auth'));
-    // const config = {
-    //   headers: {
-    //     Authorization: `Bearer ${tokenDefault.accessToken.replaceAll(`"`, '')}`,
-    //   },
-    // };  
     axios.defaults.headers.common.Authorization = `Bearer ${tokenDefault.accessToken.replaceAll(
       `"`,
       ''
