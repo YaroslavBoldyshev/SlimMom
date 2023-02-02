@@ -11,7 +11,7 @@ export const addDayProductThunk = createAsyncThunk(
       const { data } = await axios.post('/day', productInfo);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.massage);
     }
   }
 );
@@ -24,7 +24,7 @@ export const deleteDayProductThunk = createAsyncThunk(
       const response = await axios.delete('/day', { data: {dayId, eatenProductId} })
       return response.data
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.massage);
     }
   }
 );
@@ -38,7 +38,7 @@ export const getDayInfoThunk = createAsyncThunk(
       const { data } = await axios.post('/day/info', dateForAdd);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.massage);
     }
   }
 );
