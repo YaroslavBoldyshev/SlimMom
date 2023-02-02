@@ -25,9 +25,7 @@ export const named = createAsyncThunk(
       ''
     )}`;
     try {
-
       const { data } = await axios.post(`/daily-rate/${userId}`, formData);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
-import imgTablet from '../../images/sideBarBgTablet.jpg';
-import imgDesktop from '../../images/sideBarBgDesktop.jpg';
+import imgTablet from '../../images/sideBarBgTablet.png';
+import imgDesktop from '../../images/sideBarBgDesktop.png';
 
 export const Bar = styled.aside`
   background-color: #f0f1f3;
   background-repeat: no-repeat;
-  font-family: 'Verdana';
+
   font-style: normal;
   letter-spacing: 0.04em;
   padding: 40px 20px 52px 20px;
@@ -17,6 +17,7 @@ export const Bar = styled.aside`
     align-items: baseline;
     justify-content: flex-start;
     gap: 80px;
+
     background-image: url(${imgTablet});
     background-size: cover;
     background-position: center;
@@ -25,6 +26,7 @@ export const Bar = styled.aside`
     width: -webkit-fill-available;
     flex-direction: column;
     gap: 60px;
+    height: 100vh;
     padding: 292px 123px 166px 106px;
     background-image: url(${imgDesktop});
     background-size: contain;

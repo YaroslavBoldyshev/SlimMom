@@ -10,6 +10,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSidSelector } from 'redux/auth/auth-selectors';
 import { refresh } from 'redux/auth/auth-operations';
+import { Suspense } from 'react';
+import Loader from './Loader/Loader';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Login = lazy(() => import('pages/Login/Login'));
@@ -28,21 +30,23 @@ export const App = () => {
   
   return (
     <>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home />} />
-          {/* <Route path="/main" element={<Main />} /> */}
-          <Route path="/" element={<PrivateRoute />}>
-            <Route path="/diary" element={<DairyPage />} />
-            <Route path="/calculator" element={<Calculator />} />
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Home />} />
+            {/* <Route path="/main" element={<Main />} /> */}
+            <Route path="/" element={<PrivateRoute />}>
+              <Route path="/diary" element={<DairyPage />} />
+              <Route path="/calculator" element={<Calculator />} />
+            </Route>
+            <Route path="/" element={<PublicRoute />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Registration />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="/" element={<PublicRoute />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Registration />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </Suspense>
     </>
-  )
+  );
 };

@@ -17,3 +17,36 @@ export const LayoutContainer = styled.div`
     width: 100%;
   }
 `;
+
+export const ChildContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1280px) {
+    flex-direction: row;
+  }
+`;
+
+export const OutletContainer = styled.div`
+  padding: 80px 0px 40px 20px;
+
+  background-color: #fff;
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1280px) {
+    padding: 293px 0px 0px 20px;
+    height: 100vh;
+    width: 60%;
+    background-color: transparent;
+  }
+`;
+
+export const RSBContainer = styled.div`
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1280px) {
+    width: 40%;
+  }
+`;
