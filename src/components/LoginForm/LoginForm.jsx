@@ -65,7 +65,7 @@ const LoginForm = () => {
         </LabelPass>
         <ButtonsWrapper>
           <LogButton type="submit">Log In</LogButton>
-          <RegButton type="button">Register</RegButton>
+          <RegButton to="/register">Register</RegButton>
         </ButtonsWrapper>
       </LogForm>
     </>
