@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/auth/auth-operations';
-import Container from 'components/Container/Container';
+// import Container from 'components/Container/Container';
 import {
   Input,
   Label,
@@ -11,7 +11,11 @@ import {
   LogForm,
   Title,
   ButtonsWrapper,
+  Img,
+  Image,
 } from './LoginForm.styled';
+import img from '../../images/homeBgTablet.jpg';
+import image from '../../images/homeBgDesktop.jpg';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -68,6 +72,8 @@ const LoginForm = () => {
           <RegButton to="/register">Register</RegButton>
         </ButtonsWrapper>
       </LogForm>
+      <Img src={img} />
+      <Image src={image} />
     </>
   );
 };

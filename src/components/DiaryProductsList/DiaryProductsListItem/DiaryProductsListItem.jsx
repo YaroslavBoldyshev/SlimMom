@@ -2,19 +2,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteDayProductThunk } from 'redux/day/day-operations';
 import { selectEatenId } from 'redux/day/day-selectors';
 import { selectEatenProducts } from 'redux/day/day-selectors';
-
 import { DiaryProductsListItemStyled } from './DiaryProductsListItem.styled';
 import closeSvg from '../../../icons/close.svg';
 
+
 export const DiaryProductsListItem = ({ name, weight, kcal, id }) => {
   const dispatch = useDispatch();
-  const mayDayId = useSelector(selectEatenId);
+  const myDayId = useSelector(selectEatenId);
   const dayMeal = useSelector(selectEatenProducts);
   const localDayMeal = JSON.parse(localStorage.getItem('prodList'));
 
   const handleDelete = id => {
     const dayData = {
-      dayId: mayDayId,
+      dayId: myDayId,
       eatenProductId: id,
     };
     const arr1 = [...localDayMeal.eatenProducts];
@@ -22,8 +22,6 @@ export const DiaryProductsListItem = ({ name, weight, kcal, id }) => {
 
     if (arr1.length === arr2.length) {
       dispatch(deleteDayProductThunk(dayData));
-    } else {
-      console.log('/');
     }
   };
 
@@ -54,5 +52,6 @@ export const DiaryProductsListItem = ({ name, weight, kcal, id }) => {
         </button>
       </div>
     </DiaryProductsListItemStyled>
+
   );
 };

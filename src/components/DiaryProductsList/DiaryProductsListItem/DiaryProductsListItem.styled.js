@@ -1,5 +1,14 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { ReactComponent as CloseIcon } from "../../../icons/close.svg";
 
+
+export const IconClose = styled(CloseIcon)`
+fill: black;
+transition: var(--transition-dur-and-func);
+:hover{
+  fill: var(--secondary-accent-color);
+}
+`
 export const DiaryProductsListItemStyled = styled.div`
   .DiaryProductsListItemStyled {
     width: 605px;

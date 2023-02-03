@@ -8,7 +8,6 @@ export const unnamed = createAsyncThunk(
   async (credential, thunkAPI) => {
     try {
       const { data } = await axios.post('/daily-rate', credential);
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
