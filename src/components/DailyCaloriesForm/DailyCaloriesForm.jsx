@@ -6,6 +6,7 @@ import { unnamed, named } from 'redux/dailyRate/dailyRate-operations';
 import { getDailyRate } from 'redux/dailyRate/dailyRate-selectors';
 import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 import { selectUserId } from 'redux/user/user-selectors';
+import { toast } from 'react-toastify';
 
 export const DailyCaloriesForm = () => {
   const summary = useSelector(getDailyRate);
@@ -44,19 +45,20 @@ export const DailyCaloriesForm = () => {
 
     if (isLoggedIn) {
       dispatch(named({ userId, formData }));
+      toast('success');
     } else {
       dispatch(unnamed(formData));
       setIsModalShown(prevState => !prevState);
-      setForm({
-        height: '',
-        weight: '',
-        age: '',
-        desiredWeight: '',
-        bloodType: '',
-      });
-
-      e.currentTarget.reset();
     }
+    setForm({
+      height: '',
+      weight: '',
+      age: '',
+      desiredWeight: '',
+      bloodType: '',
+    });
+    e.currentTarget.reset();
+    
   };
 
   return (
@@ -268,9 +270,9 @@ const RadioButtonDiv = styled.div`
   input:checked {
     & + label::before {
       display: flex;
-      justify-content: center;
+      align-items: baseline;
       content: '⬤';
-      align-items: center;
+      padding: 1px 0px 0px 0.5px;
     }
     & + label {
       color: #fc842d;

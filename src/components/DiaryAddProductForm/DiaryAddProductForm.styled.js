@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export const DiaryAddStyled = styled.div`
   .DiaryAddStyled-wrapper {
-    margin-bottom: 60px;
     margin-right: 0px;
-    @media screen and (max-width: 767px) {
+
+    &__form {
+      margin-bottom: 32px;
     }
 
     &__date {
@@ -16,9 +17,12 @@ export const DiaryAddStyled = styled.div`
     }
 
     &__foodInput {
-      display: flex;
-      align-items: baseline;
-      margin-top: 20px;
+      display: none;
+      @media screen and (min-width: 768px) {
+        display: flex;
+        align-items: baseline;
+        margin-top: 20px;
+      }
     }
     
     &__product {
@@ -58,6 +62,9 @@ export const DiaryAddStyled = styled.div`
       border: none;
       width: 48px;
       height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 50%;
       background-color: #fc842d;
       box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
@@ -65,8 +72,15 @@ export const DiaryAddStyled = styled.div`
 
     &__img {
       color: #ffffff;
-      width: 14px;
-      height: 14px;
+    }
+    &__mobileBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 60px;
+      @media screen and (min-width: 768px) {
+        display: none;
+      }
     }
   }
 `;

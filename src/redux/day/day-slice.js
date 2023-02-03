@@ -38,7 +38,6 @@ const daySlice = createSlice({
         localStorage.setItem('productToDelete', JSON.stringify(action.payload));
       })
       .addCase(deleteDayProductThunk.rejected, (state, action) => {
-        console.log(action.payload);
         state.isLoading = false;
         state.error = action.payload;
       })

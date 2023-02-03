@@ -7,17 +7,19 @@ import {
   getProductSearch,
   getProductId,
 } from '../../redux/productSearch/productSearch-selectors';
-
+import { IconCalendar } from './DiaryAddProductForm.styled';
 import { search } from '../../redux/productSearch/productSearch-operations';
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
 import { addDayProductThunk } from 'redux/day/day-operations';
 import { getDayInfoThunk } from 'redux/day/day-operations';
+import { ModalForm } from 'components/ModalForm/ModalForm';
 
 export const DiaryAddProductForm = () => {
   let currentDate = new Date().toJSON().slice(0, 10);
   const dispatch = useDispatch();
   const myProducts = useSelector(getProductSearch);
   const [productSearch, setProductSearch] = useState('');
+  const [isModalShown, setIsModalShown] = useState(false);
   const [form, setForm] = useState({
     date: `${currentDate}`,
     productId: '',
@@ -70,7 +72,7 @@ export const DiaryAddProductForm = () => {
   useEffect(() => {
     dispatch(getDayInfoThunk({ date: form.date }));
     setIsLoading(false);
-  }, [dispatch, isLoading]);
+  }, [dispatch, isLoading, isModalShown]);
 
   return (
     <DiaryAddStyled>
@@ -129,7 +131,22 @@ export const DiaryAddProductForm = () => {
         <div>
           <DiaryProductsList currentDate={form.date} />
         </div>
+        <div className="DiaryAddStyled-wrapper__mobileBtn">
+          <button
+            className="DiaryAddStyled-wrapper__btn"
+            onClick={() => setIsModalShown(prevState => !prevState)}
+            type="button"
+          >
+            <img
+              className="DiaryAddStyled-wrapper__img"
+              src={addSvg}
+              alt="add"
+            />
+          </button>
+        </div>
       </div>
+
+      {isModalShown && <ModalForm date={form.date} onClose={setIsModalShown} />}
     </DiaryAddStyled>
   );
 };

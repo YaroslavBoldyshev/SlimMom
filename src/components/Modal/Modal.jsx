@@ -21,7 +21,6 @@ import { useEffect } from 'react';
 const Modal = ({ sum, onClose }) => {
   const isLoading = useSelector(isDailyLoading);
   const products = useSelector(getNotAllow);
-  console.log(products);
 
   useEffect(() => {
     const handleKeyDown = e => {
@@ -57,6 +56,10 @@ const Modal = ({ sum, onClose }) => {
               <NumList>
                 {products.length > 0 &&
                   products.map(prod => <li key={prod.id}>{prod}</li>)}
+                <p>1. Flour products</p>
+                <p>2. Milk</p>
+                <p>3. Red meat</p>
+                <p>4. Smoked meats</p>
               </NumList>
               <RegisterLink to="/register">Start losing weight </RegisterLink>
             </ModCon>

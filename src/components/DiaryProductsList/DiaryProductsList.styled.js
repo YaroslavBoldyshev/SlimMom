@@ -1,38 +1,33 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const DiaryProductsListStyled = styled.div`
 
-  .DiaryProductsListStyled-list{
+  .DiaryProductsListStyled-list {
     position: relative;
-    max-height: 240px;
+    height: 225px;
+    overflow: hidden;
     overflow-y: scroll;
     padding-right: 0px;
-    width: 1000px;
+    width: 100%;
 
-    @media screen and (max-width: 480px) {
+    @media screen and (min-width: 767px) {
       .list {
         padding-right: 0px;
       }
-    }
-    &__item{
-      width: 600px
-    }
+      height: 250px;
 
-    &__gradient {
-      z-index: 100;
-      width: 100px;
-      height: 100px;
-      background-image: linear-gradient(
-        to bottom,
-        rgba(0, 0, 255, 0) 0,
-        #f11 150%
-      );
+    }
+    &__item {
+      width: auto;
+    }
+    @media screen and (min-width: 1280px) {
+      height: 300px;
     }
   }
 `;
 
- // &__item{
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  // }
+// &__item{
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }

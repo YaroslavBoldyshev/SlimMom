@@ -12,6 +12,8 @@ import { getSidSelector } from 'redux/auth/auth-selectors';
 import { refresh } from 'redux/auth/auth-operations';
 import { Suspense } from 'react';
 import Loader from './Loader/Loader';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Login = lazy(() => import('pages/Login/Login'));
@@ -27,7 +29,7 @@ export const App = () => {
   useEffect(() => {
     dispatch(refresh({sid: sesId}))
   }, [dispatch])
-  
+
   return (
     <>
       <Suspense fallback={<Loader />}>
@@ -46,6 +48,7 @@ export const App = () => {
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
+        <ToastContainer/>
       </Suspense>
     </>
   );

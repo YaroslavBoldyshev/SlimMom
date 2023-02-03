@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const DiaryDateCalendarStyled = styled.div`
 .DiaryDateCalendarStyled-calendar{
-    font-family: 'Verdana';
     font-style: normal;
     font-weight: 700;
     font-size: 34px;
