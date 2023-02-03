@@ -27,9 +27,9 @@ export const RightSideBar = ({date, left, consumed, rate, normal, food}) => {
       <div>
         <H2 className="headerBottom">Food not recommended</H2>
         <Ul>
-          {Array.isArray(food) && food.map(meal => {
+          {Array.isArray(food) && food.map(meal => 
             <List>{meal.title}</List>
-          })}
+          )}
         </Ul>
       </div>
     </Bar>

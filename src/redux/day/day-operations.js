@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { dailyRateReducer } from 'redux/dailyRate/dailyRate-slice';
 
 axios.defaults.baseURL = 'https://slimmom-backend.goit.global';
 

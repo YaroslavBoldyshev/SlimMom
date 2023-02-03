@@ -28,6 +28,7 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(refresh({sid: sesId}))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch])
 
   return (
