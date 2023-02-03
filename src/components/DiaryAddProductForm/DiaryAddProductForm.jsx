@@ -7,7 +7,7 @@ import {
   getProductSearch,
   getProductId,
 } from '../../redux/productSearch/productSearch-selectors';
-
+import { IconCalendar } from './DiaryAddProductForm.styled';
 import { search } from '../../redux/productSearch/productSearch-operations';
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
 import { addDayProductThunk } from 'redux/day/day-operations';
