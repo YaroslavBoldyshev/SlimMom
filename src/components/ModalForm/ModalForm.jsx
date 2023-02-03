@@ -29,6 +29,7 @@ export const ModalForm = ({ date, onClose }) => {
     }
   }, [dispatch, productSearch]);
 
+
   const productHandleClick = e => {
     const thatINeed = e.target.value.split(',');
     setProductSearch(thatINeed[0]);
@@ -62,6 +63,7 @@ export const ModalForm = ({ date, onClose }) => {
     dispatch(getDayInfoThunk({ date: form.date }));
     setIsLoading(false);
   }, [dispatch, form.date, isLoading]);
+
   return createPortal(
     <>
       {!isLoading && (

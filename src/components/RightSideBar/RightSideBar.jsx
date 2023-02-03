@@ -30,6 +30,7 @@ export const RightSideBar = ({date, left, consumed, rate, normal, food}) => {
           {Array.isArray(food) && food.map(meal => 
             <List>{meal.title}</List>
           )}
+
         </Ul>
       </div>
     </Bar>
