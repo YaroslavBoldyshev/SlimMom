@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://slimmom-backend.goit.global';
 
@@ -28,7 +27,6 @@ export const register = createAsyncThunk(
       accessToken.set(data.accessToken);
       return data;
     } catch (error) {
-      toast('oops, something went wrong(')
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -42,7 +40,6 @@ export const logIn = createAsyncThunk(
       accessToken.set(data.accessToken);
       return data;
     } catch (error) {
-      toast('oops, something went wrong(')
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -56,7 +53,6 @@ export const logOut = createAsyncThunk(
       accessToken.set(data.token);
       clearAuthHeader();
     } catch (error) {
-      toast('oops, something went wrong(')
       return thunkAPI.rejectWithValue(error.message);
     }
 
@@ -75,7 +71,6 @@ export const refresh = createAsyncThunk(
       accessToken.set(data.newAccessToken);
       return data;
     } catch (error) {
-      toast('oops, something went wrong(')
       return thunkAPI.rejectWithValue(error.message);
     }
   }

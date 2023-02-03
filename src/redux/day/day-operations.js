@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import { dailyRateReducer } from 'redux/dailyRate/dailyRate-slice';
 
 axios.defaults.baseURL = 'https://slimmom-backend.goit.global';
@@ -12,7 +11,6 @@ export const addDayProductThunk = createAsyncThunk(
       const { data } = await axios.post('/day', productInfo);
       return data;
     } catch (error) {
-      toast('oops, something went wrong(')
       return thunkAPI.rejectWithValue(error.massage);
     }
   }
@@ -27,7 +25,6 @@ export const deleteDayProductThunk = createAsyncThunk(
 
       return response.data
     } catch (error) {
-      toast('oops, something went wrong(')
       return thunkAPI.rejectWithValue(error.massage);
     }
   }
@@ -42,7 +39,6 @@ export const getDayInfoThunk = createAsyncThunk(
       const { data } = await axios.post('/day/info', dateForAdd);
       return data;
     } catch (error) {
-      toast('oops, something went wrong(')
       return thunkAPI.rejectWithValue(error.massage);
     }
   }
