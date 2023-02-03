@@ -30,10 +30,11 @@ export const ChildContainer = styled.div`
 `;
 
 export const OutletContainer = styled.div`
-  padding: 80px 0px 40px 20px;
+  padding: 80px 20px 60px 20px;
 
   background-color: #fff;
   @media screen and (min-width: 768px) {
+    padding: 100px 20px 40px 20px;
   }
   @media screen and (min-width: 1280px) {
     padding: 293px 0px 0px 20px;
