@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const DiaryProductsListStyled = styled.div`
+
   .DiaryProductsListStyled-list {
     position: relative;
     height: 225px;

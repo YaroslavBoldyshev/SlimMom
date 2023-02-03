@@ -8,19 +8,19 @@ export const RightSideBar = ({date, left, consumed, rate, normal, food}) => {
         <Ul>
           <List>
             <span>Left</span>
-            <span>{left}</span>
+            <span>{left} kcal</span>
           </List>
           <List>
             <span>Consumed</span>
-            <span>{consumed}</span>
+            <span>{consumed} kcal</span>
           </List>
           <List>
-            <span>rate</span>
-            <span>{rate}</span>
+            <span>Daily rate</span>
+            <span>{rate} kcal</span>
           </List>
           <List>
             <span>n% normal</span>
-            <span>{normal}</span>
+            <span>{normal} %</span>
           </List>
         </Ul>
       </div>

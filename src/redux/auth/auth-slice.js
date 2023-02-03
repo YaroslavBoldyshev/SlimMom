@@ -33,54 +33,55 @@ const authSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  extraReducers: {
-    // Register=========================================
-    [register.pending](state) {
-      state.isLoading = true;
-    },
-    [register.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.accessToken = action.payload.accessToken;
-      state.isLoggedIn = true;
-      state.isLoading = false;
-    },
-    [register.rejected](state, action) {
-      state.error = action.payload;
-      state.isLoading = false;
-    },
-    // LogIn=============================================
-    [logIn.pending](state) {
-      state.isLoading = true;
-    },
-    [logIn.fulfilled](state, action) {
-      state.todaySummary = action.payload.todaySummary;
-      state.user = action.payload.user;
-      state.accessToken = action.payload.accessToken;
-      state.refreshToken = action.payload.refreshToken;
-      state.sid = action.payload.sid;
-      state.isLoggedIn = true;
-      state.isLoading = false;
-    },
-    [logIn.rejected](state, action) {
-      state.error = action.payload;
-      state.isLoading = false;
-    },
-    // LogOut============================================
-    [logOut.fulfilled](state) {
-      state.todaySummary = null;
-      state.user = null;
-      state.accessToken = null;
-      state.refreshToken = null;
-      state.sid = null;
-      state.isLoggedIn = false;
-    },
-    // refresh===========================================
-    [refresh.fulfilled](state, action) {
-      state.accessToken = action.payload.newAccessToken;
-      state.refreshToken = action.payload.newRefreshToken;
-      state.sid = action.payload.sid;
-      state.isLoggedIn = true;
-    },
+  extraReducers: builder => {
+    builder
+      // Register=========================================
+      .addCase(register.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.accessToken = action.payload.accessToken;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(register.rejected, (state, action) => {
+        state.error = action.payload;
+        state.isLoading = false;
+      })
+      // LogIn=============================================
+      .addCase(logIn.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(logIn.fulfilled, (state, action) => {
+        state.todaySummary = action.payload.todaySummary;
+        state.user = action.payload.user;
+        state.accessToken = action.payload.accessToken;
+        state.refreshToken = action.payload.refreshToken;
+        state.sid = action.payload.sid;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(logIn.rejected, (state, action) => {
+        state.error = action.payload;
+        state.isLoading = false;
+      })
+      // LogOut============================================
+      .addCase(logOut.fulfilled, (state) => {
+        state.todaySummary = null;
+        state.user = null;
+        state.accessToken = null;
+        state.refreshToken = null;
+        state.sid = null;
+        state.isLoggedIn = false;
+      })
+      // refresh===========================================
+      .addCase(refresh.fulfilled, (state, action) => {
+        state.accessToken = action.payload.newAccessToken;
+        state.refreshToken = action.payload.newRefreshToken;
+        state.sid = action.payload.sid;
+        state.isLoggedIn = true;
+      });
   },
 });
 

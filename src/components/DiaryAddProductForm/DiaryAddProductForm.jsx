@@ -38,6 +38,7 @@ export const DiaryAddProductForm = () => {
       ...state,
       date: e.target.value,
     }));
+    localStorage.setItem('date', e.target.value);
   };
 
   const productHandleClick = e => {
@@ -98,13 +99,13 @@ export const DiaryAddProductForm = () => {
               className="DiaryAddStyled-wrapper__product"
             />
             <div>
-              <datalist id="brow">
+              <datalist id="brow" onChange={e => console.log(e)} >
                 {Array.isArray(myProducts) &&
                   myProducts.map(product => {
                     return (
                       <option
                         key={product._id}
-                        value={[product.title.ua, product._id]}
+                        value={[product.title.ru, product._id]}
                       ></option>
                     );
                   })}

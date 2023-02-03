@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { unnamed, named } from './dailyRate-operations';
+const myDate = new Date().toJSON().slice(0, 10);
 
 const authSlice = createSlice({
   name: 'dailyRate',
@@ -8,49 +9,50 @@ const authSlice = createSlice({
     dailyRate: null,
     summaries: [
       {
-        _id: null,
-        date: null,
-        kcalLeft: null,
-        kcalConsumed: null,
-        dailyRate: null,
-        percentsOfDailyRate: null,
-        userId: null,
-        __v: null,
+        _id: 0,
+        date: myDate,
+        kcalLeft: 0,
+        kcalConsumed: 0,
+        dailyRate: 0,
+        percentsOfDailyRate: 0,
+        userId: 0,
+        __v: 0,
       },
     ],
     notAllowedProducts: [],
     isLoading: false,
     error: null,
   },
-  extraReducers: {
+  extraReducers: builder => {
+    builder
     // unnamed=======================================================
-    [unnamed.pending](state) {
+    .addCase(unnamed.pending, (state) => {
       state.isLoading = true;
-    },
-    [unnamed.fulfilled](state, action) {
+    })
+    .addCase(unnamed.fulfilled, (state, action) => {
       state.dailyRate = action.payload.dailyRate;
       state.notAllowedProducts = action.payload.notAllowedProducts;
       state.isLoading = false;
-    },
-    [unnamed.rejected](state, action) {
+    })
+    .addCase(unnamed.rejected, (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
-    },
+    })
     // named=========================================================
-    [named.pending](state) {
+    .addCase(named.pending, (state) => {
       state.isLoading = true;
-    },
-    [named.fulfilled](state, action) {
+    })
+    .addCase(named.fulfilled, (state, action) => {
       state.id = action.payload.id;
       state.dailyRate = action.payload.dailyRate;
       state.summaries = action.payload.summaries;
       state.notAllowedProducts = action.payload.notAllowedProducts;
       state.isLoading = false;
-    },
-    [named.rejected](state, action) {
+    })
+    .addCase(named.rejected, (state, action) => {
       state.error = action.payload;
       state.isLoading = false;
-    },
+    })
   },
 });
 

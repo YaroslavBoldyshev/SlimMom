@@ -47,6 +47,10 @@ export const OutletContainer = styled.div`
 `;
 
 export const RSBContainer = styled.div`
+  -moz-transition: all 300ms;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+
   @media screen and (min-width: 768px) {
   }
   @media screen and (min-width: 1280px) {

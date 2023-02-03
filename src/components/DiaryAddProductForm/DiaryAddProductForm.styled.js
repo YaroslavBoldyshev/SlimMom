@@ -24,7 +24,7 @@ export const DiaryAddStyled = styled.div`
         margin-top: 20px;
       }
     }
-
+    
     &__product {
       width: 240px;
       font: inherit;
