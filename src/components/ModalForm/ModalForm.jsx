@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addDayProductThunk, getDayInfoThunk } from 'redux/day/day-operations';
 import { search } from 'redux/productSearch/productSearch-operations';
 import { getProductSearch } from 'redux/productSearch/productSearch-selectors';
-import addSvg from '../../icons/add.svg';
 import {
   ModalBtn,
   ModalFormContainer,
@@ -28,7 +27,8 @@ export const ModalForm = ({ date, onClose }) => {
     if (productSearch !== '') {
       dispatch(search(productSearch));
     }
-  }, [productSearch]);
+  }, [dispatch, productSearch]);
+
 
   const productHandleClick = e => {
     const thatINeed = e.target.value.split(',');
@@ -62,7 +62,8 @@ export const ModalForm = ({ date, onClose }) => {
   useEffect(() => {
     dispatch(getDayInfoThunk({ date: form.date }));
     setIsLoading(false);
-  }, [dispatch, isLoading]);
+  }, [dispatch, form.date, isLoading]);
+
   return createPortal(
     <>
       {!isLoading && (

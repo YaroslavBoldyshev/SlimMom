@@ -3,11 +3,9 @@ import { useState } from 'react';
 import addSvg from '../../icons/add.svg';
 import { DiaryAddStyled } from './DiaryAddProductForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getProductSearch,
-  getProductId,
-} from '../../redux/productSearch/productSearch-selectors';
-import { IconCalendar } from './DiaryAddProductForm.styled';
+import { getProductSearch } from '../../redux/productSearch/productSearch-selectors';
+
+
 import { search } from '../../redux/productSearch/productSearch-operations';
 import { DiaryProductsList } from 'components/DiaryProductsList/DiaryProductsList';
 import { addDayProductThunk } from 'redux/day/day-operations';
@@ -31,7 +29,8 @@ export const DiaryAddProductForm = () => {
     if (productSearch !== '') {
       dispatch(search(productSearch));
     }
-  }, [productSearch]);
+  }, [dispatch, productSearch]);
+
 
   const dataHandleClick = e => {
     setForm(state => ({
@@ -72,7 +71,7 @@ export const DiaryAddProductForm = () => {
   useEffect(() => {
     dispatch(getDayInfoThunk({ date: form.date }));
     setIsLoading(false);
-  }, [dispatch, isLoading, isModalShown]);
+  }, [dispatch, form.date, isLoading, isModalShown]);
 
   return (
     <DiaryAddStyled>
@@ -99,7 +98,8 @@ export const DiaryAddProductForm = () => {
               className="DiaryAddStyled-wrapper__product"
             />
             <div>
-              <datalist id="brow" onChange={e => console.log(e)} >
+              <datalist id="brow" onChange={e => console.log(e)}>
+
                 {Array.isArray(myProducts) &&
                   myProducts.map(product => {
                     return (
