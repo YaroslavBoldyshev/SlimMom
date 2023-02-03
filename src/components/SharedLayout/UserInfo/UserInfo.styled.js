@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
-export const UserContainer = styled.div`
+export const UserInfoContainer = styled.div`
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
   position: absolute;
   top: 80px;
   right: 0px;
@@ -23,6 +23,19 @@ export const UserContainer = styled.div`
     align-items: center;
   }
 `;
+
+export const UserContainer = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  @media screen and (min-width: 768px) {
+  }
+  @media screen and (min-width: 1280px) {
+  }
+`;
+
+export const GoBackContainer = styled.div``;
 
 export const UserName = styled.div`
   font-weight: 700;
