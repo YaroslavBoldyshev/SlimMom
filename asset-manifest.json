@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/SlimMom/static/css/main.29e36483.css",
-    "main.js": "/SlimMom/static/js/main.e6716c8d.js",
-    "static/js/544.ba522f67.chunk.js": "/SlimMom/static/js/544.ba522f67.chunk.js",
+    "main.js": "/SlimMom/static/js/main.65549288.js",
+    "static/js/544.54ce1b8f.chunk.js": "/SlimMom/static/js/544.54ce1b8f.chunk.js",
     "static/js/755.df7292e1.chunk.js": "/SlimMom/static/js/755.df7292e1.chunk.js",
     "static/js/778.a026fc60.chunk.js": "/SlimMom/static/js/778.a026fc60.chunk.js",
     "static/js/498.defbcc9d.chunk.js": "/SlimMom/static/js/498.defbcc9d.chunk.js",
-    "static/js/390.f38de6f2.chunk.js": "/SlimMom/static/js/390.f38de6f2.chunk.js",
+    "static/js/390.a70f6fad.chunk.js": "/SlimMom/static/js/390.a70f6fad.chunk.js",
     "static/media/sideBarBgDesktop.png": "/SlimMom/static/media/sideBarBgDesktop.4ac04803fbc3332839f1.png",
     "static/media/sideBarBgTablet.png": "/SlimMom/static/media/sideBarBgTablet.dff0ff469211833c0ff6.png",
     "static/media/homeBgDesktop.jpg": "/SlimMom/static/media/homeBgDesktop.437b6be71ae72cda9d5b.jpg",
@@ -20,15 +20,15 @@
     "static/media/close.svg": "/SlimMom/static/media/close.8e2fe88bddc434aec3ed366b4caa52a3.svg",
     "static/media/goBack.svg": "/SlimMom/static/media/goBack.7290ead1dc26bdce6821f691f81d869c.svg",
     "main.29e36483.css.map": "/SlimMom/static/css/main.29e36483.css.map",
-    "main.e6716c8d.js.map": "/SlimMom/static/js/main.e6716c8d.js.map",
-    "544.ba522f67.chunk.js.map": "/SlimMom/static/js/544.ba522f67.chunk.js.map",
+    "main.65549288.js.map": "/SlimMom/static/js/main.65549288.js.map",
+    "544.54ce1b8f.chunk.js.map": "/SlimMom/static/js/544.54ce1b8f.chunk.js.map",
     "755.df7292e1.chunk.js.map": "/SlimMom/static/js/755.df7292e1.chunk.js.map",
     "778.a026fc60.chunk.js.map": "/SlimMom/static/js/778.a026fc60.chunk.js.map",
     "498.defbcc9d.chunk.js.map": "/SlimMom/static/js/498.defbcc9d.chunk.js.map",
-    "390.f38de6f2.chunk.js.map": "/SlimMom/static/js/390.f38de6f2.chunk.js.map"
+    "390.a70f6fad.chunk.js.map": "/SlimMom/static/js/390.a70f6fad.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.29e36483.css",
-    "static/js/main.e6716c8d.js"
+    "static/js/main.65549288.js"
   ]
 }
