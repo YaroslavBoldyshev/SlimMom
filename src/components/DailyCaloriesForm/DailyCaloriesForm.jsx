@@ -40,7 +40,7 @@ export const DailyCaloriesForm = () => {
       height: form.height,
       age: form.age,
       desiredWeight: form.desiredWeight,
-      bloodType: 1,
+      bloodType: form.bloodType,
     };
 
     if (isLoggedIn) {
