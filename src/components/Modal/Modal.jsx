@@ -21,7 +21,6 @@ import { useEffect } from 'react';
 const Modal = ({ sum, onClose }) => {
   const isLoading = useSelector(isDailyLoading);
   const products = useSelector(getNotAllow);
-  console.log(products);
 
   useEffect(() => {
     const handleKeyDown = e => {

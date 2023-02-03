@@ -43,9 +43,6 @@ export const DailyCaloriesForm = () => {
     };
 
     if (isLoggedIn) {
-      console.log(userId);
-      console.log(formData);
-
       dispatch(named({ userId, formData }));
     } else {
       dispatch(unnamed(formData));
@@ -271,9 +268,9 @@ const RadioButtonDiv = styled.div`
   input:checked {
     & + label::before {
       display: flex;
-      justify-content: center;
+      align-items: baseline;
       content: '⬤';
-      align-items: center;
+      padding: 1px 0px 0px 0.5px;
     }
     & + label {
       color: #fc842d;

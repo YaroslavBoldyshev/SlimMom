@@ -1,28 +1,27 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const DiaryProductsListStyled = styled.div`
-
-.DiaryProductsListStyled-list{
+  .DiaryProductsListStyled-list {
     position: relative;
-    max-height: 240px;
+    height: 225px;
+    overflow: hidden;
     overflow-y: scroll;
     padding-right: 0px;
-    width: 100px
+    width: 100%;
 
-  @media screen and (max-width: 480px) {
-    .list {
-      padding-right: 0px;
+    @media screen and (max-width: 480px) {
+      .list {
+        padding-right: 0px;
+      }
+    }
+    &__item {
+      width: auto;
     }
   }
-  &__item{
-    width: 600px
-  }
-
-}
 `;
 
- // &__item{
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  // }
+// &__item{
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
