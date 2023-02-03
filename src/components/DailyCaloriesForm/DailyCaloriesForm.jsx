@@ -43,9 +43,6 @@ export const DailyCaloriesForm = () => {
     };
 
     if (isLoggedIn) {
-      console.log(userId);
-      console.log(formData);
-
       dispatch(named({ userId, formData }));
     } else {
       dispatch(unnamed(formData));

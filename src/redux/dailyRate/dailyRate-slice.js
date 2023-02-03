@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { unnamed, named } from './dailyRate-operations';
+const myDate = new Date().toJSON().slice(0, 10);
 
 const authSlice = createSlice({
   name: 'dailyRate',
@@ -8,14 +9,14 @@ const authSlice = createSlice({
     dailyRate: null,
     summaries: [
       {
-        _id: null,
-        date: null,
-        kcalLeft: null,
-        kcalConsumed: null,
-        dailyRate: null,
-        percentsOfDailyRate: null,
-        userId: null,
-        __v: null,
+        _id: 0,
+        date: myDate,
+        kcalLeft: 0,
+        kcalConsumed: 0,
+        dailyRate: 0,
+        percentsOfDailyRate: 0,
+        userId: 0,
+        __v: 0,
       },
     ],
     notAllowedProducts: [],

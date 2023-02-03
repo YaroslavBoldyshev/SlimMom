@@ -36,6 +36,7 @@ export const DiaryAddProductForm = () => {
       ...state,
       date: e.target.value,
     }));
+    localStorage.setItem('date', e.target.value);
   };
 
   const productHandleClick = e => {
