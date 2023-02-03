@@ -55,7 +55,7 @@ export const ModalForm = ({ date, onClose }) => {
       weight: '',
     }));
     setProductSearch('');
-    setIsLoading(true);
+    // setIsLoading(true);
     onClose(false);
   };
 

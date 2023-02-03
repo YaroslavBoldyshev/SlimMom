@@ -17,7 +17,7 @@ export const Bar = styled.aside`
     align-items: baseline;
     justify-content: flex-start;
     gap: 80px;
-
+    width: -webkit-fill-available;
     background-image: url(${imgTablet});
     background-size: cover;
     background-position: center;

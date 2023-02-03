@@ -9,13 +9,18 @@ export const DiaryProductsListStyled = styled.div`
     padding-right: 0px;
     width: 100%;
 
-    @media screen and (max-width: 480px) {
+    @media screen and (min-width: 767px) {
       .list {
         padding-right: 0px;
       }
+      height: 250px;
+
     }
     &__item {
       width: auto;
+    }
+    @media screen and (min-width: 1280px) {
+      height: 300px;
     }
   }
 `;

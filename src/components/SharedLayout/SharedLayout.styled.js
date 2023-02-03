@@ -21,8 +21,10 @@ export const LayoutContainer = styled.div`
 export const ChildContainer = styled.div`
   display: flex;
   flex-direction: column;
+  /* height: 92.3vh; */
 
   @media screen and (min-width: 768px) {
+    justify-content: space-between;
   }
   @media screen and (min-width: 1280px) {
     flex-direction: row;

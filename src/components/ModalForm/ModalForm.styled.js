@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const ModalFormContainer = styled.div`
+export const ModalFormContainer = styled.form`
   position: fixed;
   top: 0px;
   left: 0;
@@ -65,6 +65,6 @@ export const ModalBtn = styled.button`
   display: flex;
   align-items: center;
   text-align: center;
-
   color: #ffffff;
+ 
 `;

@@ -15,7 +15,7 @@ export const DiaryProductsList = ({currentDate}) => {
 
   useEffect(() => {
     dispatch(getDayInfoThunk({ date: currentDate }));
-  }, [currentDate, deletedProduct]);
+  }, [currentDate, deletedProduct, dispatch]);
 
   return (
 <DiaryProductsListStyled>

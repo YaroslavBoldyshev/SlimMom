@@ -71,7 +71,7 @@ export const DiaryAddProductForm = () => {
   useEffect(() => {
     dispatch(getDayInfoThunk({ date: form.date }));
     setIsLoading(false);
-  }, [dispatch, isLoading]);
+  }, [dispatch, isLoading, isModalShown]);
 
   return (
     <DiaryAddStyled>

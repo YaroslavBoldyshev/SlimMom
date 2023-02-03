@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://slimmom-backend.goit.global';
 
@@ -10,6 +11,7 @@ export const unnamed = createAsyncThunk(
       const { data } = await axios.post('/daily-rate', credential);
       return data;
     } catch (error) {
+      toast('oops, something went wrong(')
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -27,6 +29,7 @@ export const named = createAsyncThunk(
       const { data } = await axios.post(`/daily-rate/${userId}`, formData);
       return data;
     } catch (error) {
+      toast('oops, something went wrong(')
       return thunkAPI.rejectWithValue(error.message);
     }
   }
